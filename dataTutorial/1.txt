@@ -1,0 +1,6 @@
+feature:repo-add mvn:org.tma.com.vn/music-manager-feature/LATEST/xml
+feature:repo-remove -u mvn:org.tma.com.vn/music-manager-feature/LATEST/xml
+feature:repo-list
+feature:install music-datasource
+feature:install music-command
+feature:install music-blueprint

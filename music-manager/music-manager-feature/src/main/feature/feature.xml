@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="karaf-jpa-example-${project.version}"
+	xmlns="http://karaf.apache.org/xmlns/features/v1.3.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
+
+	<feature name="music-datasource"
+		version="${project.version}">
+		<config name="org.ops4j.datasource-song">
+            osgi.jdbc.driver.class=org.h2.Driver
+            databaseName=song;create=true
+            dataSourceName=song
+        </config>
+		<capability>
+            osgi.service;objectClass=javax.sql.DataSource;effective:=active;osgi.jndi.service.name=song
+        </capability>
+	</feature>
+
+	 <feature name="music-api" version="${project.version}">
+        <feature>transaction</feature>
+        <feature>jndi</feature>
+        <feature>pax-jdbc-config</feature>
+        <feature>pax-jdbc-h2</feature>
+        <feature>pax-jdbc-pool-dbcp2</feature>
+        <feature>jdbc</feature>
+        <feature dependency="true">aries-blueprint</feature>
+        <feature version="[2,3)">jpa</feature>
+        <feature version="5.4.2.Final">hibernate</feature>
+        <bundle>mvn:org.tma.com.vn/music-manager-api/${project.version}</bundle>
+    </feature>
+    
+	<feature name="music-command"
+		version="${project.version}">
+		<feature version="${project.version}">music-api</feature>
+		<bundle>mvn:org.tma.com.vn/music-manager-command/${project.version}</bundle>
+	</feature>
+	
+	<!-- Blueprint Providers -->
+	<feature name="music-bluprint"
+		version="${project.version}">
+		<feature version="${project.version}">music-api</feature>
+		<bundle>mvn:org.tma.com.vn/music-manager-bluprint-service/${project.version}</bundle>
+	</feature>
+	
+</features>
