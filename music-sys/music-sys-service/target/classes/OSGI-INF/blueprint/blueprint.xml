@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0" xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 https://osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+
+	<jpa:enable />
+	<tx:enable-annotations />
+	
+	
+	<bean id="songDAO" class="org.music.sys.dao.SongDAOImpl"/>
+	<service ref="songDAO" interface="org.music.sys.dao.SongDAO"/>
+	
+	
+	<bean id="songService" class="org.music.sys.service.SongServiceImpl">
+		<argument ref="songDAO"/>
+	</bean>
+	
+	<service ref="songService" interface="org.music.sys.api.SongService" />
+</blueprint>

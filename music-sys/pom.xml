@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.tma.com.vn</groupId>
+  <artifactId>music-sys</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>music-sys-api</module>
+    <module>music-sys-service</module>
+    <module>music-sys-rest</module>
+    <module>music-sys-feature</module>
+  </modules>
+  
+   <properties>
+        <cxf.version>3.2.6</cxf.version>
+        <jackson.version>2.9.4</jackson.version>
+    </properties>
+    
+</project>

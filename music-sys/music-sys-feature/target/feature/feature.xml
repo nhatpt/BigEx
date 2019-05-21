@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<features name="music-sys-1.0" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
+
+	<repository>mvn:org.tma.com.vn/music-sys-feature/1.0/xml/features</repository>
+	<repository>mvn:org.apache.cxf.karaf/apache-cxf/3.2.6/xml/features</repository>
+	<repository>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.features/1.0.3/xml</repository>
+	
+	<feature name="music-sys-datasource" version="1.0">
+		<config name="org.ops4j.datasource-music">
+          osgi.jdbc.driver.class=org.h2.Driver
+            databaseName=musicsys;create=true
+            dataSourceName=music
+        </config>
+		<capability>
+            osgi.service;objectClass=javax.sql.DataSource;effective:=active;osgi.jndi.service.name=music
+        </capability>
+	</feature>
+	<feature name="music-sys-api" version="1.0">
+		<bundle>mvn:org.tma.com.vn/music-sys-api/1.0</bundle>
+		<feature>transaction</feature>
+		<feature>jndi</feature>
+		<feature>pax-jdbc-config</feature>
+		<feature>pax-jdbc-h2</feature>
+		<feature>pax-jdbc-pool-dbcp2</feature>
+		<feature>jdbc</feature>
+		<feature dependency="true">aries-blueprint</feature>
+		<feature version="[2,3)">jpa</feature>
+		<feature version="[2,3)">eclipselink</feature>
+		<feature version="[5,6)">hibernate</feature>
+	</feature>
+
+	<feature name="music-sys-service" version="1.0">
+		<feature>aries-blueprint</feature>
+		<feature version="1.0">music-sys-api</feature>
+		<bundle>mvn:org.tma.com.vn/music-sys-service/1.0</bundle>
+	</feature>
+	
+	<feature name="music-sys-rest" version="1.0">
+		<feature version="1.0">music-sys-api</feature>
+		<feature version="1.0">music-sys-service</feature>
+		<feature dependency="true">http</feature>
+		<requirement>osgi.service;effective:=active;filter:=(objectClass=org.osgi.service.http.HttpService)</requirement>
+		<feature dependency="true">aries-blueprint</feature>
+		<feature version="3.2.6" dependency="true">cxf</feature>
+		<bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-core/2.9.4</bundle>
+		<bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-annotations/2.9.4</bundle>
+		<bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-databind/2.9.4</bundle>
+		<bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.9.4</bundle>
+		<bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.9.4</bundle>
+		<bundle>mvn:org.tma.com.vn/music-sys-rest/1.0</bundle>
+	</feature>
+	
+</features>
