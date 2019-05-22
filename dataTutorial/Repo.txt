@@ -1,0 +1,18 @@
+feature:repo-remove -u mvn:org.tma.com.vn/music-sys-feature/LATEST/xml
+
+feature:repo-add mvn:org.tma.com.vn/music-sys-feature/LATEST/xml
+
+feature:repo-list
+feature:list | grep music
+
+feature:install music-sys-datasource
+feature:install music-sys-service
+
+feature:list | grep cxf
+
+
+
+feature:install music-sys-rest
+feature:install music-sys-cmd
+
+service:list DataSource
