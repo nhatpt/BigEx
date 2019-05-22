@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.music.sys.rest.AppTest" time="0.014" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.music.sys.rest.AppTest" time="0.031" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -18,7 +18,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\ptnhat\AppData\Local\Temp\surefire8927181785541714727\surefirebooter8260824906716878511.jar C:\Users\ptnhat\AppData\Local\Temp\surefire8927181785541714727 2019-05-22T16-34-43_029-jvmRun1 surefire7979406857043183510tmp surefire_28963125399507832917tmp"/>
+    <property name="sun.java.command" value="C:\Users\ptnhat\AppData\Local\Temp\surefire5000775372321279914\surefirebooter1069927024414912016.jar C:\Users\ptnhat\AppData\Local\Temp\surefire5000775372321279914 2019-05-22T17-15-21_950-jvmRun1 surefire3605490051583313696tmp surefire_21769092190721263677tmp"/>
     <property name="surefire.test.class.path" value="C:\Users\ptnhat\eclipse-workspace\BigEx\music-sys\music-sys-rest\target\test-classes;C:\Users\ptnhat\eclipse-workspace\BigEx\music-sys\music-sys-rest\target\classes;C:\Users\ptnhat\.m2\repository\com\fasterxml\jackson\jaxrs\jackson-jaxrs-json-provider\2.9.8\jackson-jaxrs-json-provider-2.9.8.jar;C:\Users\ptnhat\.m2\repository\com\fasterxml\jackson\jaxrs\jackson-jaxrs-base\2.9.8\jackson-jaxrs-base-2.9.8.jar;C:\Users\ptnhat\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.8\jackson-core-2.9.8.jar;C:\Users\ptnhat\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.8\jackson-databind-2.9.8.jar;C:\Users\ptnhat\.m2\repository\com\fasterxml\jackson\module\jackson-module-jaxb-annotations\2.9.8\jackson-module-jaxb-annotations-2.9.8.jar;C:\Users\ptnhat\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.0\jackson-annotations-2.9.0.jar;C:\Users\ptnhat\.m2\repository\javax\ws\rs\javax.ws.rs-api\2.1\javax.ws.rs-api-2.1.jar;C:\Users\ptnhat\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\ptnhat\eclipse-workspace\BigEx\music-sys\music-sys-api\target\music-sys-api-1.0.jar;C:\Users\ptnhat\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0\javax.persistence-2.1.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\ptnhat"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\ptnhat\AppData\Local\Temp\surefire8927181785541714727\surefirebooter8260824906716878511.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ptnhat\AppData\Local\Temp\surefire5000775372321279914\surefirebooter1069927024414912016.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_121\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>

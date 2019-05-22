@@ -14,8 +14,6 @@
 		<module>music-sys-service</module>
 		<module>music-sys-feature</module>
 		<module>music-sys-rest</module>
-		<module>music-sys-webapp</module>
-		<module>music-sys-service-v1</module>
 	</modules>
 
 	<properties>

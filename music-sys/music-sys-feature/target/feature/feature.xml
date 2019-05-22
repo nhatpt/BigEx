@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
 
-	<repository>mvn:org.tma.com.vn/music-sys-feature/1.0/xml/features</repository>
+<!-- 	<repository>mvn:org.tma.com.vn/music-sys-feature/1.0/xml/features</repository> -->
 	<repository>mvn:org.apache.cxf.karaf/apache-cxf/3.2.6/xml/features</repository>
 	<repository>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.features/1.0.3/xml</repository>
 
@@ -41,16 +41,8 @@
 		<bundle>mvn:org.tma.com.vn/music-sys-service/1.0</bundle>
 	</feature>
 
-	<feature name="music-sys-service-v1"
-		version="1.0">
-		<feature>aries-blueprint</feature>
-		<feature version="1.0">music-sys-api</feature>
-		<bundle>mvn:org.tma.com.vn/music-sys-service-v1/1.0</bundle>
-	</feature>
-
-	<feature name="music-sys-command" version="1.0">
-		<feature>aries-blueprint</feature>
-		<feature version="1.0">music-sys-api</feature>
+	<feature name="music-sys-cmd" version="1.0">
+		<feature version="1.0">music-sys-rest</feature>
 		<bundle>mvn:org.tma.com.vn/music-sys-cmd/1.0</bundle>
 	</feature>
 

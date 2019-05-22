@@ -12,18 +12,13 @@ import org.apache.karaf.shell.api.action.Argument;
 import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Option;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
-
 import org.music.sys.api.Song;
-import org.music.sys.api.SongService;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import jdk.nashorn.internal.ir.annotations.Reference;
 
 @Service
 @Command(scope = "music", name = "add", description = "Add a song")
 public class AddCmd implements Action {
-	@Reference
-	private SongService songService;
 
 	@Argument(index = 0, name = "name", description = "name song", required = true, multiValued = false)
 	String name;
@@ -47,7 +42,6 @@ public class AddCmd implements Action {
         providers.add(new JacksonJsonProvider());
         WebClient webClient = WebClient.create(restLocation, providers);
         webClient.header("Content-Type", MediaType.APPLICATION_JSON).post(song);
-        
 		return null;
 	}
 }

@@ -10,10 +10,8 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.karaf.shell.api.action.Action;
 import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Option;
-import org.apache.karaf.shell.api.action.lifecycle.Reference;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.music.sys.api.Song;
-import org.music.sys.api.SongService;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
@@ -23,9 +21,6 @@ public class ListCmd implements Action{
 	  @Option(name = "--url", description = "Location of the REST service", required = false, multiValued = false)
 	    String restLocation = "http://localhost:8181/cxf/mms/";
 	   
-	  @Reference
-	    private SongService songService;
-
 	  @Override
 	    public Object execute() throws Exception {
 	        List<JacksonJsonProvider> providers = new ArrayList<JacksonJsonProvider>();

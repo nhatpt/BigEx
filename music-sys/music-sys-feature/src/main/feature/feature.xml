@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
 
-	<repository>mvn:org.tma.com.vn/music-sys-feature/${project.version}/xml/features</repository>
+<!-- 	<repository>mvn:org.tma.com.vn/music-sys-feature/${project.version}/xml/features</repository> -->
 	<repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
 	<repository>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.features/1.0.3/xml</repository>
 
@@ -41,16 +41,8 @@
 		<bundle>mvn:org.tma.com.vn/music-sys-service/${project.version}</bundle>
 	</feature>
 
-	<feature name="music-sys-service-v1"
-		version="${project.version}">
-		<feature>aries-blueprint</feature>
-		<feature version="${project.version}">music-sys-api</feature>
-		<bundle>mvn:org.tma.com.vn/music-sys-service-v1/${project.version}</bundle>
-	</feature>
-
-	<feature name="music-sys-command" version="${project.version}">
-		<feature>aries-blueprint</feature>
-		<feature version="${project.version}">music-sys-api</feature>
+	<feature name="music-sys-cmd" version="${project.version}">
+		<feature version="${project.version}">music-sys-rest</feature>
 		<bundle>mvn:org.tma.com.vn/music-sys-cmd/${project.version}</bundle>
 	</feature>
 
@@ -69,9 +61,9 @@
 		<bundle>mvn:org.tma.com.vn/music-sys-rest/${project.version}</bundle>
 	</feature>
 
-	<feature name="music-sys-webapp" version="${project.version}">
-		<feature prerequisite="true">war</feature>
-		<bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/${project.version}/war?Web-ContextPath=mms</bundle>
-	</feature>
+<!-- 	<feature name="music-sys-webapp" version="${project.version}"> -->
+<!-- 		<feature prerequisite="true">war</feature> -->
+<!-- 		<bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/${project.version}/war?Web-ContextPath=mms</bundle> -->
+<!-- 	</feature> -->
 
 </features>
