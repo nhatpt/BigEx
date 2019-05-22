@@ -30,12 +30,13 @@ public class Song implements Serializable {
 	}
 
 	public Song(String name, String genre) {
+		super();
 		this.name = name;
 		this.genre = genre;
 	}
 
 	public Song() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Integer getId() {
@@ -68,7 +69,7 @@ public class Song implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Song [id=" + id + ", name=" + name + ", genre=" + genre + "]";
+		return "Song[id=" + id + ", name=" + name + ", genre=" + genre + "]";
 	}
 
 }

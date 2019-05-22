@@ -9,27 +9,27 @@
 	<repository>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.features/1.0.3/xml</repository>
 	
 	<feature name="music-sys-datasource" version="1.0">
-		<config name="org.ops4j.datasource-music">
+		<config name="org.ops4j.datasource-song">
           osgi.jdbc.driver.class=org.h2.Driver
-            databaseName=musicsys;create=true
-            dataSourceName=music
+            databaseName=songManager;create=true
+            dataSourceName=song
         </config>
 		<capability>
-            osgi.service;objectClass=javax.sql.DataSource;effective:=active;osgi.jndi.service.name=music
+            osgi.service;objectClass=javax.sql.DataSource;effective:=active;osgi.jndi.service.name=song
         </capability>
 	</feature>
 	<feature name="music-sys-api" version="1.0">
+		 <feature>transaction</feature>
+        <feature>jndi</feature>
+        <feature>pax-jdbc-config</feature>
+        <feature>pax-jdbc-h2</feature>
+        <feature>pax-jdbc-pool-dbcp2</feature>
+        <feature>jdbc</feature>
+        <feature dependency="true">aries-blueprint</feature>
+        <feature version="[2,3)">jpa</feature>
+        <feature version="[2,3)">eclipselink</feature>
+        <feature version="[5,6)">hibernate</feature>
 		<bundle>mvn:org.tma.com.vn/music-sys-api/1.0</bundle>
-		<feature>transaction</feature>
-		<feature>jndi</feature>
-		<feature>pax-jdbc-config</feature>
-		<feature>pax-jdbc-h2</feature>
-		<feature>pax-jdbc-pool-dbcp2</feature>
-		<feature>jdbc</feature>
-		<feature dependency="true">aries-blueprint</feature>
-		<feature version="[2,3)">jpa</feature>
-		<feature version="[2,3)">eclipselink</feature>
-		<feature version="[5,6)">hibernate</feature>
 	</feature>
 
 	<feature name="music-sys-service" version="1.0">
@@ -37,6 +37,11 @@
 		<feature version="1.0">music-sys-api</feature>
 		<bundle>mvn:org.tma.com.vn/music-sys-service/1.0</bundle>
 	</feature>
+	
+	 <feature name="music-sys-command" version="1.0">
+      	<feature version="1.0">music-sys-api</feature>
+        <bundle>mvn:org.tma.com.vn/music-sys-cmd/1.0</bundle>
+    </feature>
 	
 	<feature name="music-sys-rest" version="1.0">
 		<feature version="1.0">music-sys-api</feature>
@@ -52,5 +57,10 @@
 		<bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.9.4</bundle>
 		<bundle>mvn:org.tma.com.vn/music-sys-rest/1.0</bundle>
 	</feature>
-	
+
+    <feature name="music-sys-webapp" version="1.0">
+        <feature prerequisite="true">war</feature>
+        <bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/1.0/war?Web-ContextPath=mms</bundle>
+    </feature>
+    
 </features>

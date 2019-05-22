@@ -14,7 +14,6 @@ import javax.ws.rs.core.Response;
 import org.music.sys.api.Song;
 import org.music.sys.api.SongService;
 
-@Path("api")
 public class SongREST {
 	private SongService songService;
 

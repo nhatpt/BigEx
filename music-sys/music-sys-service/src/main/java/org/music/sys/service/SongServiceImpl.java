@@ -10,6 +10,15 @@ import org.music.sys.dao.SongDAO;
 public class SongServiceImpl implements SongService {
 	
 	private SongDAO songDAO;
+	
+	public SongServiceImpl(SongDAO songdao) {
+		this.songDAO = songdao;
+	}
+	
+	public void setSongdao(SongDAO songdao) {
+		this.songDAO = songdao;
+	}
+	
 	public List<Song> list() {
 		return songDAO.list();
 	}
