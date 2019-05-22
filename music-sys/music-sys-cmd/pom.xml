@@ -10,10 +10,12 @@
 		<version>1.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+	
 	<artifactId>music-sys-cmd</artifactId>
 	<name>music-sys-cmd</name>
 	<url>http://maven.apache.org</url>
-
+	<packaging>bundle</packaging>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -44,6 +46,7 @@
 			<plugin>
 				<groupId>org.apache.karaf.tooling</groupId>
 				<artifactId>karaf-services-maven-plugin</artifactId>
+				<extensions>true</extensions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -55,6 +58,7 @@
 						</Private-Package>
 						<Import-Package>
 							org.music.sys.api,
+							org.apache.karaf.shell*;version="[4,5)",
 							*
 						</Import-Package>
 					</instructions>

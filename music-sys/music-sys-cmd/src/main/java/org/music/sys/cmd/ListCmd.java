@@ -2,11 +2,15 @@ package org.music.sys.cmd;
 
 
 import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.apache.karaf.shell.support.table.ShellTable;
 import org.music.sys.api.Song;
 import org.music.sys.api.SongService;
 
+@Service
+@Command(scope = "music", name = "list", description = "List a song")
 public class ListCmd implements Action{
 
 	  @Reference

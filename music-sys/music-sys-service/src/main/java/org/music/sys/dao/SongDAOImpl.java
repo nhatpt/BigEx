@@ -20,35 +20,40 @@ public class SongDAOImpl implements SongDAO{
 	}
 
 	@Transactional(Transactional.TxType.SUPPORTS)
+	@Override
 	public List<Song> list() {
 		TypedQuery<Song> query = entityManager.createQuery("SELECT s FROM Song s", Song.class);
 		return query.getResultList();
 	}
 
 	@Transactional(Transactional.TxType.SUPPORTS)
+	@Override
 	public Song get(Integer id) {
 		return entityManager.find(Song.class, id);
-
 	}
 
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	@Override
 	public void add(Song song) {
 		entityManager.persist(song);
 		entityManager.flush();
 	}
 
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	@Override
 	public void remove(int id) {
 		Song song = get(id);
 		entityManager.remove(song);		
 	}
 
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	@Override
 	public void update(Song song) {
 		entityManager.merge(song);
 	}
 
-	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	@Transactional(Transactional.TxType.SUPPORTS)
+	@Override
 	public List<Song> getbyName(String name) {
 		TypedQuery<Song> query = entityManager
 				.createQuery("select s from Song s where lower(s.name) LIKE lower(:name)", Song.class);
@@ -57,6 +62,7 @@ public class SongDAOImpl implements SongDAO{
 	}
 	
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	@Override
 	public void removeAll() {
 		entityManager.createQuery("delete from Song").executeUpdate();				
 	}
