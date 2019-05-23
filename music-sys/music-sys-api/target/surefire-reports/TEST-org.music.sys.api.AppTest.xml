@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.music.sys.api.AppTest" time="0.013" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.music.sys.api.AppTest" time="0.01" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -18,7 +18,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\HADES\AppData\Local\Temp\surefire8846032977649354501\surefirebooter8568850408180945526.jar C:\Users\HADES\AppData\Local\Temp\surefire8846032977649354501 2019-05-23T23-32-06_097-jvmRun1 surefire3317298618249825760tmp surefire_05516916323903283912tmp"/>
+    <property name="sun.java.command" value="C:\Users\HADES\AppData\Local\Temp\surefire1622369545058707415\surefirebooter1528575054532890022.jar C:\Users\HADES\AppData\Local\Temp\surefire1622369545058707415 2019-05-24T00-43-02_498-jvmRun1 surefire361657915387996583tmp surefire_0422629244694600306tmp"/>
     <property name="surefire.test.class.path" value="C:\Users\HADES\Documents\GitHub\BigEx\music-sys\music-sys-api\target\test-classes;C:\Users\HADES\Documents\GitHub\BigEx\music-sys\music-sys-api\target\classes;C:\Users\HADES\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\HADES\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0\javax.persistence-2.1.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\HADES"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\HADES\AppData\Local\Temp\surefire8846032977649354501\surefirebooter8568850408180945526.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\HADES\AppData\Local\Temp\surefire1622369545058707415\surefirebooter1528575054532890022.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_201\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>

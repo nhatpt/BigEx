@@ -91,9 +91,13 @@ public class SongREST {
 	@PUT
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Response update(Song song) {
+//	public Response update(Song song) {
+	public Response update(Song song, @PathParam("id") int id) {
 		try {
-			songService.update(song);
+			Song updateSong = songService.get(id);
+			updateSong.setName(song.getName());
+			updateSong.setgenre(song.getgenre());
+			songService.update(updateSong);
 			return Response.status(Response.Status.ACCEPTED).header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Credentials", "true")
 					.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
