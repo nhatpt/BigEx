@@ -61,9 +61,9 @@
 		<bundle>mvn:org.tma.com.vn/music-sys-rest/1.0</bundle>
 	</feature>
 
-	<feature name="music-sys-webapp" version="1.0">
-		<feature prerequisite="true">war</feature>
-		<bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/1.0/war?Web-ContextPath=mms</bundle>
-	</feature>
+<!-- 	<feature name="music-sys-webapp" version="1.0"> -->
+<!-- 		<feature prerequisite="true">war</feature> -->
+<!-- 		<bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/1.0/war?Web-ContextPath=mms</bundle> -->
+<!-- 	</feature> -->
 
 </features>

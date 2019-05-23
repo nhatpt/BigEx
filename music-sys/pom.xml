@@ -10,7 +10,6 @@
 	
 	<modules>
 		<module>music-sys-api</module>
-		<module>music-sys-cmd</module>
 		<module>music-sys-service</module>
 		<module>music-sys-feature</module>
 		<module>music-sys-rest</module>
