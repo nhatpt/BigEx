@@ -7,12 +7,13 @@
 	<artifactId>music-sys</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
-	
+
 	<modules>
 		<module>music-sys-api</module>
 		<module>music-sys-service</module>
 		<module>music-sys-feature</module>
 		<module>music-sys-rest</module>
+		<module>music-sys-webapp</module>
 	</modules>
 
 	<properties>
