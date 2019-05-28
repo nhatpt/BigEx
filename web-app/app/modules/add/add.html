@@ -1,0 +1,31 @@
+<!-- Modal Form -->
+<div class="modal" id = "{{idModal}}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add song</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!-- data-dismiss="modal" -->
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <input type="text" class="form-control" placeholder="Name" ng-model="getName">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <input type="text" class="form-control" placeholder="Genre" ng-model ="getGenre">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary float-right" ng-click = "sayHi()" data-dismiss = "modal">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Form -->
