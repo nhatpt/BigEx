@@ -14,6 +14,8 @@ import javax.ws.rs.core.Response;
 import org.music.sys.api.Song;
 import org.music.sys.api.SongService;
 
+@Path("api")
+
 public class SongREST {
 	private SongService songService;
 
@@ -23,7 +25,7 @@ public class SongREST {
 
 	@Path("/")
 	@Produces("application/json")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@GET
 	public Response list() {
 		try {
@@ -55,7 +57,7 @@ public class SongREST {
 		}
 	}
 
-	@Path("/")
+	@Path("/add")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@POST
@@ -72,22 +74,24 @@ public class SongREST {
 		}
 	}
 
-	@Path("/{id}")
+	@Path("/delete/{id}")
 	@DELETE
 	public Response remove(@PathParam("id") int id) {
 		try {
 			songService.remove(id);
-			return Response.status(Response.Status.OK).header("Access-Control-Allow-Origin", "*")
+			return Response.status(Response.Status.OK)
+					.header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Credentials", "true")
-					.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
-					.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD").build();
+					.header("Access-Control-Allow-Headers","*")
+					.header("Access-Control-Allow-Methods", "*")
+					.build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Response.status(Response.Status.NO_CONTENT).build();
 		}
 	}
 
-	@Path("/{id}")
+	@Path("/update/{id}")
 	@PUT
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -109,7 +113,7 @@ public class SongREST {
 
 	}
 
-	@Path("/{name}")
+	@Path("/search?{name}")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@GET
@@ -126,7 +130,7 @@ public class SongREST {
 		}
 	}
 
-	@Path("/deleteall")
+	@Path("/deleteAll")
 	@DELETE
 	public Response deleteAll() {
 		try {

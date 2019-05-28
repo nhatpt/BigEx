@@ -1,5 +1,6 @@
 app.service("addNewSong", function($http) {
-  this.addSong = function(x, y) {
+  delete $http.defaults.headers.common['X-Requested-With'];
+  this.addSong = function(song) {
     swal({
       title: "Are you sure?",
       text: "You will save the song to MMS!",
@@ -10,22 +11,13 @@ app.service("addNewSong", function($http) {
       if (isConfirm) {
 
         var myData = {
-          name: x,
-          genre: y
+          'name': song.name,
+          'genre': song.genre
         };
 
-        var post = $http({
-          method: "POST",
-          header: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": true,
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD"
-          },
-          url: "http://localhost:8181/cxf/mms/",
-          data: myData
-        });
-        post.then(
+        var url = "http://localhost:8181/cxf/mms/api/add";
+
+        $http.post(url, myData).then(
             swal({
                 title: "Success!",
                 text: "The song have saved!",
@@ -33,6 +25,7 @@ app.service("addNewSong", function($http) {
               }),
             function(errResponse) {
                 swal("Error", "Have some Error!" , "error");
+                console.log(errResponse);
             }
           );
         
@@ -40,7 +33,5 @@ app.service("addNewSong", function($http) {
         swal("Cancelled", "Your song not save", "error");
       }
     });
-    //   scope.getName = null;
-    //   scope.getGenre = null;
   };
 });

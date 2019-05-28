@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1558670886609
-Build-Jdk: 1.8.0_121
-Built-By: ptnhat
+Bnd-LastModified: 1559064265717
+Build-Jdk: 1.8.0_201
+Built-By: HADES
 Bundle-ManifestVersion: 2
 Bundle-Name: music-sys-api
 Bundle-SymbolicName: org.tma.com.vn.music-sys-api

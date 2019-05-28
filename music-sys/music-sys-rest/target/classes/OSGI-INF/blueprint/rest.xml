@@ -19,10 +19,12 @@
 	<jaxrs:server id="songRest" address="/mms">
 		<jaxrs:serviceBeans>
 			<ref component-id="songBean" />
+			
 		</jaxrs:serviceBeans>
 		
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+			
 		</jaxrs:providers>
 		
 	</jaxrs:server>

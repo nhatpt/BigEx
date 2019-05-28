@@ -9,6 +9,7 @@ feature:list | grep cxf
 feature:install music-sys-datasource
 feature:install music-sys-service
 feature:install music-sys-rest
+
 feature:install music-sys-webapp
 
 service:list DataSource
