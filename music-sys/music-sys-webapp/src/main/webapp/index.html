@@ -2,34 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="./app/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./app/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+<link rel="stylesheet" href="./app/css/bootstrap.min.css">
+<link rel="stylesheet" href="./app/css/all.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"> </script>
-    <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-resource.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="./app/js/jquery-3.4.1.min.js"></script>
-    <script src="./app/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js">
+	
+</script>
+<script
+	src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-resource.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="./app/js/jquery-3.4.1.min.js"></script>
+<script src="./app/js/bootstrap.min.js"></script>
 
-    <script src="./app/app.js"></script>
-    <script src="./app/app.routing.js"></script>
+<script src="./app/app.js"></script>
+<script src="./app/app.routing.js"></script>
 
-    <script src="./app/modules/directive/add-directive.js"></script>
-    <script src="./app/modules/services/add-service.js"></script>
-    <script src="./app/modules/services/load-service.js"></script>
-    <script src="./app/modules/home/home-controller.js"></script>
+<script src="./app/modules/directive/add-directive.js"></script>
+<script src="./app/modules/services/add-service.js"></script>
+<script src="./app/modules/services/load-service.js"></script>
+<script src="./app/modules/services/dataservice.js"></script>
 
-    
-    <title>TMA MSS Demo</title>
+<script src="./app/modules/home/home-controller.js"></script>
+<script src="./app/modules/edit/edit-controller.js"></script>
+
+<title>TMA MSS Demo</title>
 </head>
 
+<script type="text/javascript">
+	//the selector will match all input controls of type :checkbox
+	//and attach a click event handler 
+	$("input:checkbox").on('click', function() {
+		// in the handler, 'this' refers to the box clicked on
+		var $box = $(this);
+		if ($box.is(":checked")) {
+			// the name of the box is retrieved using the .attr() method
+			// as it is assumed and expected to be immutable
+			var group = "input:checkbox[name='" + $box.attr("name") + "']";
+			// the checked state of the group/box on the other hand will change
+			// and the current value is retrieved using .prop() method
+			$(group).prop("checked", false);
+			$box.prop("checked", true);
+		} else {
+			$box.prop("checked", false);
+		}
+	});
+</script>
+
 <body ng-app="myApp">
-    <ui-view></ui-view>
+	<ui-view></ui-view>
 </body>
 
 </html>

@@ -43,7 +43,7 @@ app.service("addNewSong", function($http, $window) {
           }
         );
       } else {
-        swal("Cancelled", "Your song not save", "error");
+        swal("Cancelled", "Your song not save", "warning");
       }
     });
   };

@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
 </head>
-
 <body>
     <div class="container">
         <div class="row m-2">
@@ -26,9 +25,9 @@
 
         <div class="row mt-5">
             <div class="col-8">
-                <button class="btn btn-info" data-toggle="modal" data-target="#myLogin">Add</button>
+                <button class="btn btn-info" data-toggle="modal" data-target="#myLogin">Add New Song</button>
                 <add-form id-modal="myLogin"></add-form>
-                <button class="btn btn-secondary">Delete</button>
+                <button class="btn btn-secondary" ng-click="deleteAllSong()">Delete All Song</button>
             </div>
 
             <div class="col-4">
@@ -37,7 +36,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" ng-model="search">
                     </div>
                 </form>
             </div>
@@ -54,13 +53,15 @@
                             <th class="col-3">Action</th>
                         </tr>
 
-                        <tr class="d-flex"  ng-repeat="x in myData track by $index">
-                            <td class="col-1"><input type="checkbox"></td>
+                        <tr class="d-flex" ng-repeat="x in myData | toArray:false | filter:search">
+                            <td class="col-1"><input type="checkbox" ng-click = "isCheck($event)"></td>
                             <td class="col-6">{{x.name}}</td>
                             <td class="col-2">{{x.genre}}</td>
                             <td class="col-3">
-                                <button class="btn btn-outline-dark"><i class="far fa-edit"></i></button>
-                                <button class="btn btn-outline-dark" ng-click=deleteSongByID(x.id)><i class="far fa-trash-alt"></i></button>
+                                <button type="submit" class="btn btn-outline-dark" ng-click="edit(x)"><i
+                                        class="far fa-edit"></i></button>
+                                <button class="btn btn-outline-dark" ng-click=deleteSongByID(x.id)><i
+                                        class="far fa-trash-alt"></i></button>
                             </td>
                         </tr>
                     </tbody>

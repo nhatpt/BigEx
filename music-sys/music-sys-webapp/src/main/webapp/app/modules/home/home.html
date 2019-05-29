@@ -28,7 +28,7 @@
             <div class="col-8">
                 <button class="btn btn-info" data-toggle="modal" data-target="#myLogin">Add</button>
                 <add-form id-modal="myLogin"></add-form>
-                <button class="btn btn-secondary">Delete</button>
+                <button class="btn btn-secondary" ng-click="deleteAllSong()">Delete</button>
             </div>
 
             <div class="col-4">
@@ -59,7 +59,7 @@
                             <td class="col-6">{{x.name}}</td>
                             <td class="col-2">{{x.genre}}</td>
                             <td class="col-3">
-                                <button class="btn btn-outline-dark"><i class="far fa-edit"></i></button>
+                                <button class="btn btn-outline-dark" ng-click="edit(x)" ui-sref-active="active"><i class="far fa-edit"></i></button>
                                 <button class="btn btn-outline-dark" ng-click=deleteSongByID(x.id)><i class="far fa-trash-alt"></i></button>
                             </td>
                         </tr>

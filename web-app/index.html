@@ -19,16 +19,28 @@
     <script src="./app/app.js"></script>
     <script src="./app/app.routing.js"></script>
 
+    <script src="./app/modules/filters/filter-listSong.js"></script>
     <script src="./app/modules/directive/add-directive.js"></script>
     <script src="./app/modules/services/add-service.js"></script>
     <script src="./app/modules/services/load-service.js"></script>
-    <script src="./app/modules/home/home-controller.js"></script>
+    <script src="./app/modules/services/dataservice.js"></script>
 
-    
+    <script src="./app/modules/home/home-controller.js"></script>
+    <script src="./app/modules/edit/edit-controller.js"></script>
+
     <title>TMA MSS Demo</title>
 </head>
+<script type="text/javascript">
+    function onlyOne(checkbox) {
+        var checkboxes = document.getElementsByName('check')
+        checkboxes.forEach((item) => {
+            if (item !== checkbox) item.checked = false
+        })
+    }
+</script>
 
 <body ng-app="myApp">
+    <!-- only 1 checkbox use -->
     <ui-view></ui-view>
 </body>
 

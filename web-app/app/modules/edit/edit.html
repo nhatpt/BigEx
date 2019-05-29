@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container">
+            <div class="row m-2">
+                <div class="col">
+                    <form class="form-inline float-right">
+                        <div class="form-group">
+                            <label for="my-select">Language</label>
+                            <select id="my-select" class="form-control ml-2" name="">
+                                <option>English</option>
+                                <option>Vietnamese</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <h1>UPDATE SONG</h1>
+                </div>
+            </div>
+
+            <div class="row ">
+                <div class="col">
+                    <form class="was-validated">
+                        <input type="hidden" ng-model="song.id">
+                        <div class="form-group">
+                            <label for="uname">Name:</label>
+                            <input type="text" class="form-control" id="uname" ng-init="song.name" ng-model="song.name"
+                                name="sname" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Genre:</label>
+                            <input type="text" class="form-control" id="genre" ng-init="song.genre"
+                                ng-model="song.genre" name="sgene" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="remember" required> I agree to
+                                update.
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Check this checkbox to continue.</div>
+                            </label>
+                        </div>
+                        
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-dark" ng-click="cancel()">Cancel</button>
+                            <button type="submit" class="btn btn-primary" ng-click="updateSong(song)">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
