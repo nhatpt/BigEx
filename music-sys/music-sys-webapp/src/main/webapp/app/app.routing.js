@@ -1,4 +1,4 @@
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     var home = {
         name: 'home',
         url: '/home',
@@ -6,7 +6,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'myCtrl'
     }
 
-    $stateProvider.state(home);
-    $urlRouterProvider.otherwise('/home');
-
+    $stateProvider.state(home)
+    $urlRouterProvider.otherwise('/home')
 });

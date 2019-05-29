@@ -6,9 +6,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $htt
         controller: 'myCtrl'
     }
 
-    $stateProvider.state(home);
-    $urlRouterProvider.otherwise('/home');
-
-    // $locationProvider.html5Mode(true);
-    $httpProvider.defaults.withCredentials = true; // <= Added this
+    $stateProvider.state(home)
+    $urlRouterProvider.otherwise('/home')
 });

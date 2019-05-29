@@ -63,7 +63,7 @@
 
 	<feature name="music-sys-webapp" version="${project.version}">
 		<feature prerequisite="true">war</feature>
-		<bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/${project.version}/war?Web-ContextPath=mms</bundle>
+		<bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/${project.version}/war?Web-ContextPath=musicmanager</bundle>
 	</feature>
 
 </features>

@@ -44,7 +44,7 @@ public class SongREST {
 		}
 	}
 
-	@Path("/get/{id}")
+	@Path("/{id}")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@GET
@@ -66,7 +66,7 @@ public class SongREST {
 		}
 	}
 
-	@Path("/add")
+	@Path("/")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@POST
@@ -89,7 +89,7 @@ public class SongREST {
 		}
 	}
 
-	@Path("/delete/{id}")
+	@Path("/{id}")
 	@DELETE
 	public Response remove(@PathParam("id") int id) {
 		try {
@@ -101,8 +101,8 @@ public class SongREST {
 //					.header(CorsHeaderConstants.HEADER_AC_ALLOW_METHODS, "*")
 					.header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Credentials", "true")
-					.header("Access-Control-Allow-Headers","*")
-					.header("Access-Control-Allow-Methods", "*")
+					.header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
+					.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
 					.build();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,7 +110,7 @@ public class SongREST {
 		}
 	}
 
-	@Path("/update/{id}")
+	@Path("/{id}")
 	@PUT
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -138,9 +138,9 @@ public class SongREST {
 
 	}
 
-	@Path("/search?{name}")
+	@Path("/{name}")
 	@Produces("application/json")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@GET
 	public Response getbyName(@PathParam("name") String name) {
 		try {

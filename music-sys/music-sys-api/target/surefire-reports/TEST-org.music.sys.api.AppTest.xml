@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.music.sys.api.AppTest" time="0.012" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.music.sys.api.AppTest" time="0.017" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -18,7 +18,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\ptnhat\AppData\Local\Temp\surefire3842079673779486958\surefirebooter7065157262009235370.jar C:\Users\ptnhat\AppData\Local\Temp\surefire3842079673779486958 2019-05-29T09-40-03_782-jvmRun1 surefire8643375788291753452tmp surefire_07138713850549929691tmp"/>
+    <property name="sun.java.command" value="C:\Users\ptnhat\AppData\Local\Temp\surefire2323813200954602124\surefirebooter6576277375065095788.jar C:\Users\ptnhat\AppData\Local\Temp\surefire2323813200954602124 2019-05-29T10-55-58_216-jvmRun1 surefire1097833822779085023tmp surefire_04927358744537463237tmp"/>
     <property name="surefire.test.class.path" value="C:\Users\ptnhat\eclipse-workspace\BigEx\music-sys\music-sys-api\target\test-classes;C:\Users\ptnhat\eclipse-workspace\BigEx\music-sys\music-sys-api\target\classes;C:\Users\ptnhat\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\ptnhat\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0\javax.persistence-2.1.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\ptnhat"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\ptnhat\AppData\Local\Temp\surefire3842079673779486958\surefirebooter7065157262009235370.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ptnhat\AppData\Local\Temp\surefire2323813200954602124\surefirebooter6576277375065095788.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_121\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -52,7 +52,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:/Program Files/Java/jre1.8.0_121/bin/server;C:/Program Files/Java/jre1.8.0_121/bin;C:/Program Files/Java/jre1.8.0_121/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;D:\Application\apache-maven-3.6.1\bin;D:\Application\apache-karaf-4.2.4\bin;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\ptnhat\AppData\Local\Microsoft\WindowsApps;C:\Users\ptnhat\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ptnhat\AppData\Roaming\npm;C:\Users\ptnhat\AppData\Local\GitHubDesktop\bin;C:\windows\System32;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\ProgramData\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;D:\Application\apache-maven-3.6.1\bin;D:\Application\apache-karaf-4.2.4\bin;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\ptnhat\AppData\Local\Microsoft\WindowsApps;C:\Users\ptnhat\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ptnhat\AppData\Roaming\npm;C:\Users\ptnhat\AppData\Local\GitHubDesktop\bin;."/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="java.vm.version" value="25.121-b13"/>

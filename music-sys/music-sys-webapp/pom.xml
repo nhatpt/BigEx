@@ -7,9 +7,7 @@
     <artifactId>music-sys</artifactId>
     <version>1.0</version>
   </parent>
-  <groupId>org.tma.com.vn</groupId>
   <artifactId>music-sys-webapp</artifactId>
-  <version>1.0</version>
   <packaging>war</packaging>
   <name>music-sys-webapp Maven Webapp</name>
   <url>http://maven.apache.org</url>
