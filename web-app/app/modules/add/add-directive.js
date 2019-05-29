@@ -9,7 +9,7 @@ app.directive("addForm", function(addNewSong) {
     link: function(scope) {
         // scope.song = $stateParams.song;
         scope.sayHi = function() {
-          addNewSong.addSong( scope.song);
+        addNewSong.addSong( scope.song);
       };
     }
   };

@@ -15,7 +15,7 @@ app.service("addNewSong", function($http) {
           'genre': song.genre
         };
 
-        var url = "http://localhost:8181/cxf/mms/api/add";
+        var url = "http://localhost:8181/cxf/music/manager/system/api/add";
 
         $http.post(url, myData).then(
             swal({

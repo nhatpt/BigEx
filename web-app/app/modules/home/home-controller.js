@@ -2,19 +2,19 @@ app.controller("myCtrl", function ($scope, $stateParams, $http, $window) {
   delete $http.defaults.headers.common['X-Requested-With'];
 // Load list song
   $scope.load = function () {
-    $http.get("http://localhost:8181/cxf/mms/api").then(function (response) {
+    $http.get("http://localhost:8181/cxf/music/manager/system/api").then(function (response) {
       $scope.ids = [];
       $scope.myData = response.data;
     });
   };
 // Delete sonng by id
   $scope.deleteSongByID = function (id) {
-    $http.delete('http://localhost:8181/cxf/mms/api/delete/' + id).then(function (response) {
+    $http.delete('http://localhost:8181/cxf/music/manager/system/api/delete/' + id).then(function (response) {
       console.log(response.data);
       $scope.load();
     },
       function (errResponse) {
-        console.log('Error while delete ' + errResponse.status)
+        console.log('Error while delete: ' + errResponse.status)
       });
   };
 

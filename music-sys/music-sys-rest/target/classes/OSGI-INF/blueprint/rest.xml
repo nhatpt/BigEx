@@ -15,16 +15,14 @@
 			<cxf:logging />
 		</cxf:features>
 	</cxf:bus>
-
-	<jaxrs:server id="songRest" address="/mms">
+	
+	<jaxrs:server id="songRest" address="/music/manager/system">
 		<jaxrs:serviceBeans>
 			<ref component-id="songBean" />
-			
 		</jaxrs:serviceBeans>
 		
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
-			
 		</jaxrs:providers>
 		
 	</jaxrs:server>
