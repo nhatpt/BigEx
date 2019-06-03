@@ -53,7 +53,7 @@
                             <th class="col-3">Action</th>
                         </tr>
 
-                        <tr class="d-flex" ng-repeat="x in myData | toArray:false | filter:search">
+                        <tr class="d-flex" ng-repeat="x in myData | filter: search">
                             <td class="col-1"><input type="checkbox" ng-click = "isCheck($event)"></td>
                             <td class="col-6">{{x.name}}</td>
                             <td class="col-2">{{x.genre}}</td>

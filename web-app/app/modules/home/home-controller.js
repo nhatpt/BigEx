@@ -20,12 +20,10 @@ app.controller("myCtrl", function(
     //   swal("Error", "Please select a song", "error");
     // }
   };
-
   // Load list song
   $scope.load = function() {
     loadSong.loadList().then(function(response) {
       $scope.myData = response.data;
-
       // $scope.ids = [];
       // angular.forEach($scope.myData , function(features){
       //   $scope.ids.push(features.id);
