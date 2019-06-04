@@ -9,16 +9,16 @@ app.controller('myEditCtrl', function ($scope, $http,$state, myData) {
     $scope.updateSong = function (song) {
         var data = {
             'name': song.name,
-            'genre': song.genre
+            'genre': song.genre,
+            'lyrics': song.lyrics
         };
         console.log(data);
-        $http.put('http://localhost:8181/cxf/music/manager/system/api/' + song.id, JSON.stringify(data))
+        $http.put('../cxf/music/manager/system/api/' + song.id, JSON.stringify(data))
             .then(function (response) {
                 console.log("Put Data Method Executed Successfully!");
                 $state.go('home');
-            },
-                function (errResponse) {
-                    console.log("Error while update song with id:" + song.id);
+            },function (errResponse) {
+                console.log("Error while update song with id:" + song.id);
         });
     };
 });

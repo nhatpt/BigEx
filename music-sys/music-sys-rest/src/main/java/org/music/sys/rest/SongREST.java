@@ -60,7 +60,7 @@ public class SongREST {
 
 	@Path("/")
 	@Produces("application/json")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@POST
 	public Response add(Song song) {
 		try {
@@ -118,7 +118,7 @@ public class SongREST {
 
 	}
 
-	@Path("/search?{name}")
+	@Path("/search/{name}")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@GET

@@ -1,4 +1,4 @@
-app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+app.config(function ($stateProvider, $urlRouterProvider) {
     var home = {
         name: 'home',
         url: '/home',
@@ -6,9 +6,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         controller: 'myCtrl'
     }
 
-    $stateProvider.state(home);
-    $urlRouterProvider.otherwise('/home');
+    var edit = {
+        name: 'edit',
+        url: '/edit',
+        templateUrl: 'app/modules/edit/edit.html',
+        controller: 'myEditCtrl'
+    }
 
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    $stateProvider.state(home)
+    $stateProvider.state(edit)
+    $urlRouterProvider.otherwise('/home')
 });

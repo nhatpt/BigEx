@@ -1,1 +1,1 @@
-var app = angular.module("myApp", ["ui.router", "angular-toArrayFilter"]);
+var app = angular.module("myApp", ["ui.router", "ngMaterial"]);

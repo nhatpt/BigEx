@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <div class="row m-2">
+        <!-- <div class="row m-2">
             <div class="col">
                 <form class="form-inline float-right">
                     <div class="form-group">
@@ -22,23 +22,36 @@
                     </div>
                 </form>
             </div>
+        </div> -->
+
+        <div class="row mt-3">
+            <div class="col text-center">
+                <h1>Music Manager System</h1>
+            </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-8">
-                <button class="btn btn-info" data-toggle="modal" data-target="#myLogin">Add New Song</button>
+                <button class="btn btn-info" data-toggle="modal" data-target="#myLogin">
+                    <md-tooltip md-direction='top'>Add Music</md-tooltip><i class="fas fa-plus"></i>
+                </button>
                 <add-form id-modal="myLogin"></add-form>
-                <button class="btn btn-secondary" ng-click="deleteMulSong()">Delete Song</button>
-                <button class="btn btn-secondary" ng-click="deleteAllSong()">Delete All Song</button>
+                <button class="btn btn-danger" ng-click="deleteMulSong($event)">
+                    <md-tooltip md-direction='top'>Delete Song</md-tooltip><i class="far fa-trash-alt"></i>
+                </button>
+                <button class="btn btn-danger" ng-click="deleteAllSong($event)">
+                    <md-tooltip md-direction='top'>Delete All Song</md-tooltip><i class="fas fa-trash"></i>
+                </button>
             </div>
 
             <div class="col-4">
-                <form class="form-inline">
+                <form class="form-inline float-right">
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                         </div>
                         <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                        <md-tooltip md-direction='top'>Search Song</md-tooltip>
                     </div>
                 </form>
             </div>
@@ -54,20 +67,28 @@
                             <th class="col-3">Action</th>
                         </tr>
 
-                        <tr class="d-flex" ng-repeat="x in myData | toArray:false | filter:search">
-                            <td class="col-1"><input type="checkbox" class="checkboxSong" ng-checked="checkAll"
-                                    ng-change="isCheckbox()" ng-model='x.checked' value="{{x.id}}"></td>
+                        <tr class="d-flex" ng-repeat="x in myData | filter: search">
+                            <td class="col-1">
+                                <md-tooltip md-direction='left'>Select Song</md-tooltip><input type="checkbox"
+                                    class="checkboxSong" ng-checked="checkAll" ng-change="isCheckbox()"
+                                    ng-model='x.checked' value="{{x.id}}">
+                            </td>
                             <!--ng-click="isChecked($event)"-->
                             <td class="col-6">{{x.name}}</td>
                             <td class="col-2">{{x.genre}}</td>
                             <td class="col-3">
-                                <button type="submit" class="btn btn-outline-dark" ng-click="edit(x)"><i
-                                        class="far fa-edit"></i></button>
-                                <button class="btn btn-outline-dark" ng-click=deleteSongByID(x.id)><i
-                                        class="far fa-trash-alt"></i></button>
-                                <button type="submit" class="btn btn-outline-dark" ng-click="play(x.id)"
-                                    data-toggle="modal" data-target="#myPlay"><i
-                                        class="fas fa-play-circle"></i></button>
+                                <button type="submit" class="btn btn-outline-success" ng-click="play(x.id)"
+                                    data-toggle="modal" data-target="#myPlay"><i class="fas fa-play-circle"></i>
+                                    <md-tooltip md-direction='top'>Play Song</md-tooltip>
+                                </button>
+                                <button type="submit" class="btn btn-info" ng-click="edit(x, $event)"><i
+                                        class="far fa-edit"></i>
+                                    <md-tooltip md-direction='top'>Edit Song</md-tooltip>
+                                </button>
+                                <button class="btn btn-danger" ng-click="deleteSongByID(x.id, $event)"><i
+                                        class="far fa-trash-alt"></i>
+                                    <md-tooltip md-direction='top'>Delete Song</md-tooltip>
+                                </button>
                                 <!-- Modal Form -->
                                 <div class="modal" id="myPlay">
                                     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -81,23 +102,25 @@
                                             </div>
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                    <div class=" divMarquee">
-                                                            {{psong.lyrics}}
-                                                    </div>
                                                 <form>
                                                     <div class="form-group">
                                                         <label>Name:</label>
                                                         <input type="text" class="form-control" placeholder="Name"
-                                                            ng-model="psong.name">
+                                                            ng-model="psong.name" disabled>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Genre</label>
                                                         <input type="text" class="form-control" placeholder="Genre"
-                                                            ng-model="psong.genre">
+                                                            ng-model="psong.genre" disabled>
+                                                    </div>
+                                                    <label>Lyrics:</label>
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" cols="30" rows="5" disabled>{{psong.lyrics}}</textarea>
                                                     </div>
                                                     <div class="form-group float-right">
-                                                        <button type="submit" class="btn btn-primary">Edit Song</button>
+                                                        <button type="submit" class="btn btn-primary index-change"
+                                                            ng-click="playEditSong(psong)">Edit Song</button>
                                                         <button type="submit" class="btn btn-primary">Delete</button>
                                                     </div>
                                                 </form>
@@ -106,7 +129,6 @@
                                     </div>
                                 </div>
                                 <!-- End Modal Form -->
-
                             </td>
                         </tr>
                     </tbody>

@@ -43,13 +43,22 @@
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
+
                         <div class="form-group">
-                            <label for="pwd">Genre:</label>
+                            <label for="genre">Genre:</label>
                             <input type="text" class="form-control" id="genre" ng-init="song.genre"
                                 ng-model="song.genre" name="sgene" required>
                             <div class="valid-feedback">Valid.</div>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
+
+                        <div class="form-group">
+                                <label for="lyrics">Lyrics:</label>
+                                <textarea type="text" class="form-control" id="lyrics" ng-init="song.lyrics"
+                                    ng-model="song.lyrics" required></textarea>
+                                <div class="valid-feedback">Valid.</div>
+                                <div class="invalid-feedback">Please fill out this field.</div>
+                            </div>
 
                         <div class="form-group form-check">
                             <label class="form-check-label">

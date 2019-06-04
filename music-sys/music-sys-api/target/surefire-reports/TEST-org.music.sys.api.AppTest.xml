@@ -18,7 +18,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin"/>
-    <property name="sun.java.command" value="C:\Users\ptnhat\AppData\Local\Temp\surefire779810523870253326\surefirebooter107259183437911406.jar C:\Users\ptnhat\AppData\Local\Temp\surefire779810523870253326 2019-05-30T16-36-01_479-jvmRun1 surefire6329883331553250330tmp surefire_0260802645236549152tmp"/>
+    <property name="sun.java.command" value="C:\Users\ptnhat\AppData\Local\Temp\surefire1155807280837992073\surefirebooter2961719672638143823.jar C:\Users\ptnhat\AppData\Local\Temp\surefire1155807280837992073 2019-06-04T09-04-21_033-jvmRun1 surefire7849402597133902116tmp surefire_09129695779352649754tmp"/>
     <property name="surefire.test.class.path" value="C:\Users\ptnhat\eclipse-workspace\BigEx\music-sys\music-sys-api\target\test-classes;C:\Users\ptnhat\eclipse-workspace\BigEx\music-sys\music-sys-api\target\classes;C:\Users\ptnhat\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\ptnhat\.m2\repository\org\eclipse\persistence\javax.persistence\2.1.0\javax.persistence-2.1.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\ptnhat"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\ptnhat\AppData\Local\Temp\surefire779810523870253326\surefirebooter107259183437911406.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\ptnhat\AppData\Local\Temp\surefire1155807280837992073\surefirebooter2961719672638143823.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_121\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>

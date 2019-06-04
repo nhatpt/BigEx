@@ -8,10 +8,9 @@ app.directive("addForm", function(addNewSong) {
     },
 
     link: function(scope) { 
-      scope.addSong = function(){
+      scope.addSong = function(x){
         var song = scope.fsong;
-        console.log(song);
-        addNewSong.addSong(song);
+        addNewSong.addSong(song,x);
       }
     }
   };

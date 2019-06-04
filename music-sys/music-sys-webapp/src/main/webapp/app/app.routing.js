@@ -1,4 +1,4 @@
-app.config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+app.config(function ($stateProvider, $urlRouterProvider) {
     var home = {
         name: 'home',
         url: '/home',

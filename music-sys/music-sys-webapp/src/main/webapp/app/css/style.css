@@ -1,24 +1,24 @@
-.divMarquee {
-    width: relative;
-    display: inline-block;
-    position: relative; 
-    -webkit-animation: myfirst 7s infinite;/* Safari 4.0 - 8.0 */
-    -webkit-animation-direction: alternate;/* Safari 4.0 - 8.0 */
-    animation: myAni 7s infinite;
-    animation-direction: initial;
+.maindiv {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes myAni {
-    0% {right: 0%;top: 0px;}
-    100% {right: 100%;top: 0px;}
-}
-/*If you want to change the direction just change the left values or make them right..*/
-@keyframes myAni {
-    0% {right: -100%;top: 0px;}
-    100% {right: 110%;top: 0px;}
+.marquee-animation {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
 }
 
-.modal-body {
-    overflow: hidden; /*This is for the overflow of moving text out of modal*/
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.z-index-change {
+    z-index: 1200;
 }
