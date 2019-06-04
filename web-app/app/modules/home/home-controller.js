@@ -6,30 +6,6 @@ app.controller("myCtrl", function(
   $state,
   $mdDialog
 ) {
-  //Confirm Dialog:
-  $scope.status = " ";
-
-  $scope.showConfirm = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    var confirm = $mdDialog
-      .confirm()
-      .title("Would you like to delete your debt?")
-      .textContent("All of the banks have agreed to forgive you your debts.")
-      .ariaLabel("Lucky day")
-      .targetEvent(ev)
-      .ok("Please do it!")
-      .cancel("Sounds like a scam");
-
-    $mdDialog.show(confirm).then(
-      function() {
-        $scope.status = "You decided to get rid of your debt.";
-      },
-      function() {
-        $scope.status = "You decided to keep your debt.";
-      }
-    );
-  };
-
   // Load list song
   $scope.load = function() {
     loadSong.loadList().then(function(response) {
@@ -51,7 +27,7 @@ app.controller("myCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("/cxf/music/manager/system/api/" + id).then(
+        $http.delete("../cxf/music/manager/system/api/" + id).then(
           function() {
             $mdDialog
               .show(
@@ -74,39 +50,8 @@ app.controller("myCtrl", function(
         );
       },
       function() {
-        console.log("Cancelled");
       }
     );
-
-    // swal({
-    //   title: "Are you sure?",
-    //   text: "You will delete this song get out your list song in MMS ?",
-    //   icon: "warning",
-    //   buttons: ["No, cancel it!", "Yes, I am sure!"],
-    //   dangerMode: true
-    // }).then(function(isConfirm) {
-    //   if (isConfirm) {
-    //     $http
-    //       .delete("/cxf/music/manager/system/api/" + id)
-    //       .then(
-    //         function() {
-    //           swal({
-    //             title: "Success!",
-    //             text: "The song have deleted!",
-    //             icon: "success"
-    //           }).then(function(response) {
-    //             console.log(response.data);
-    //             $scope.load();
-    //           });
-    //         },
-    //         function(errResponse) {
-    //           console.log("Error: " + errResponse.status);
-    //         }
-    //       );
-    //   } else {
-    //     swal("Cancelled", "Your song do not delete!", "warning");
-    //   }
-    // });
   };
 
   // Delete all sonng:
@@ -123,7 +68,7 @@ app.controller("myCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("cxf/music/manager/system/api/deleteAll").then(
+        $http.delete("../cxf/music/manager/system/api/deleteAll").then(
           function() {
             $mdDialog
               .show(
@@ -146,41 +91,8 @@ app.controller("myCtrl", function(
         );
       },
       function() {
-        console.log("Cancelled");
       }
     );
-
-    // swal({
-    //   title: "Are you sure?",
-    //   text: "You will delete your list song get out MMS ?",
-    //   icon: "warning",
-    //   buttons: ["No, cancel it!", "Yes, I am sure!"],
-    //   dangerMode: true
-    // }).then(function(isConfirm) {
-    //   if (isConfirm) {
-    //     $http
-    //       .delete(
-    //         "http://localhost:8181/cxf/music/manager/system/api/deleteAll"
-    //       )
-    //       .then(
-    //         function() {
-    //           swal({
-    //             title: "Success!",
-    //             text: "Your list song have been removed!",
-    //             icon: "success"
-    //           }).then(function(response) {
-    //             console.log(response.data);
-    //             $scope.load();
-    //           });
-    //         },
-    //         function(errResponse) {
-    //           console.log("Error: " + errResponse.status);
-    //         }
-    //       );
-    //   } else {
-    //     swal("Cancelled", "Your list song do not delete!", "warning");
-    //   }
-    // });
   };
 
   $scope.arrChecked;
@@ -196,7 +108,6 @@ app.controller("myCtrl", function(
 
   // Delete sonng by Multi-id:
   $scope.deleteMulSong = function(ev) {
-    console.log($scope.arrChecked);
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog
       .confirm()
@@ -206,81 +117,50 @@ app.controller("myCtrl", function(
       .targetEvent(ev)
       .ok("OK!")
       .cancel("Cancel");
-
-    $mdDialog.show(confirm).then(function() {
-      if ($scope.arrChecked != undefined) {
-        for (var i = 0; i < $scope.arrChecked.length; i++) {
-          $http
-            .delete("cxf/music/manager/system/api/" + $scope.arrChecked[i])
-            .then(function() {
-              $mdDialog.show(
-                $mdDialog
-                  .alert()
-                  .clickOutsideToClose(true)
-                  .title("Success")
-                  .textContent("You have deleted this song.")
-                  .ariaLabel("Alert Dialog")
-                  .ok("OK")
-                  .targetEvent(ev)
-              );
-            });
+    var count = 0;
+    $mdDialog.show(confirm).then(
+      function() {
+        if ($scope.arrChecked != undefined) {
+          for (var i = 0; i < $scope.arrChecked.length; i++) {
+            $http.delete(
+              "../cxf/music/manager/system/api/" + $scope.arrChecked[i]
+            );
+            count++;
+          }
+        } else {
+          $mdDialog.show(
+            $mdDialog
+              .alert()
+              .clickOutsideToClose(true)
+              .title("Notice")
+              .textContent("You need to select least a song.")
+              .ariaLabel("Alert Dialog")
+              .ok("OK")
+              .targetEvent(ev)
+          );
         }
-      } else {
-        $mdDialog.show(
-          $mdDialog
-            .alert()
-            .clickOutsideToClose(true)
-            .title("Notice")
-            .textContent("You need to select least a song.")
-            .ariaLabel("Alert Dialog")
-            .ok("OK")
-            .targetEvent(ev)
-        );
-      }
-    });
-
-    // swal({
-    //   title: "Are you sure?",
-    //   text: "You will delete this song get out MMS ?",
-    //   icon: "warning",
-    //   buttons: ["No, cancel it!", "Yes, I am sure!"],
-    //   dangerMode: true
-    // }).then(function(isConfirm) {
-    //   if (isConfirm) {
-    //     if ($scope.arrChecked != undefined) {
-    //       for (var i = 0; i < $scope.arrChecked.length; i++) {
-    //         $http
-    //           .delete(
-    //             "http://localhost:8181/cxf/music/manager/system/api/" +
-    //               $scope.arrChecked[i]
-    //           )
-    //           .then(
-    //             function() {
-    //               swal({
-    //                 title: "Success!",
-    //                 text: "The song have been removed!",
-    //                 icon: "success"
-    //               }).then(function(response) {
-    //                 console.log(response.data);
-    //                 $scope.load();
-    //               });
-    //             },
-    //             function(errResponse) {
-    //               console.log("Error: " + errResponse.status);
-    //             }
-    //           );
-    //       }
-    //     } else {
-    //       swal("Error", "You need to select least a song", "error");
-    //     }
-    //   } else {
-    //     swal("Cancelled", "The song do not delete!", "warning");
-    //   }
-    // });
+      }).then(function() {
+          if (count != 0) {
+              $mdDialog
+                .show(
+                  $mdDialog
+                    .alert()
+                    .clickOutsideToClose(true)
+                    .title("Success")
+                    .textContent("You have deleted this song.")
+                    .ariaLabel("Alert Dialog")
+                    .ok("OK")
+                    .targetEvent(ev)
+                ).then(function() {
+                  $scope.load();
+                });
+            }
+      }).catch(function() {
+      })
   };
 
   $scope.status = false;
-  //Save data to Edit:
+  // Save data to Edit:
   $scope.edit = function(d, ev) {
     for (var i = 0; i < $scope.myData.length; i++) {
       if ($scope.myData[i].checked == true && $scope.myData[i].id == d.id) {
@@ -299,7 +179,9 @@ app.controller("myCtrl", function(
           .alert()
           .clickOutsideToClose(true)
           .title("Warning")
-          .textContent("You need to select least a song and true song have checked.")
+          .textContent(
+            "You need to select least a song and true song have checked."
+          )
           .ariaLabel("Alert Dialog")
           .ok("OK")
           .targetEvent(ev)
@@ -307,24 +189,23 @@ app.controller("myCtrl", function(
     }
   };
 
-  //Play a song:
+  // Play a song:
   $scope.play = function(id) {
     $http
-      .get("http://localhost:8181/cxf/music/manager/system/api/get/" + id)
+      .get("../cxf/music/manager/system/api/get/" + id)
       .then(function(response) {
         $scope.psong = response.data;
-        console.log($scope.psong);
       });
   };
 
-  //play-EditSong
+  // play-EditSong
   $scope.playEditSong = function(x) {
-    myData.setData(d);
+    myData.setData(x);
     $state.go("edit");
   };
-  //play-DeleteSong:
-  $scope.playDeleteSong = function(x, ev) {
-    $scope.deleteSongByID(x.id, ev);
-  };
 
+  // play-DeleteSong:
+  $scope.playDeleteSong = function(x, ev) {
+    $scope.deleteSongByID(x, ev);
+  };
 });

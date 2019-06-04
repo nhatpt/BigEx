@@ -1,4 +1,4 @@
-app.service("addNewSong", function($http, $window, $mdDialog) {
+app.service("addNewSong", function($http, $window, $mdDialog, $window) {
   this.addSong = function(song, ev) {
     var confirm = $mdDialog
       .confirm()
@@ -40,11 +40,10 @@ app.service("addNewSong", function($http, $window, $mdDialog) {
               .ok("OK")
               .targetEvent(ev)
           ).then(function() {
-            $scope.load();
+        	  $window.location.reload();
           });
       });
     }),function() {
-        console.log("Cancelled");
     };
   };
 });
