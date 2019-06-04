@@ -52,7 +52,7 @@ public class SongDAOImpl implements SongDAO{
 		entityManager.merge(song);
 	}
 
-	@Transactional(Transactional.TxType.SUPPORTS)
+	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	@Override
 	public List<Song> getbyName(String name) {
 		TypedQuery<Song> query = entityManager
@@ -66,6 +66,4 @@ public class SongDAOImpl implements SongDAO{
 	public void removeAll() {
 		entityManager.createQuery("delete from Song").executeUpdate();				
 	}
-
-
 }

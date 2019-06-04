@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
 
-<!-- 	<repository>mvn:org.tma.com.vn/music-sys-feature/${project.version}/xml/features</repository> -->
+	<repository>mvn:org.tma.com.vn/music-sys-feature/${project.version}/xml/features</repository>
 	<repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
 	<repository>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.features/1.0.3/xml</repository>
 
@@ -60,10 +60,11 @@
 		<bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
 		<bundle>mvn:org.tma.com.vn/music-sys-rest/${project.version}</bundle>
 	</feature>
+	
 
-	<feature name="music-sys-webapp" version="${project.version}">
-		<feature prerequisite="true">war</feature>
-		<bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/${project.version}/war?Web-ContextPath=musicmanager</bundle>
-	</feature>
+<!-- 	<feature name="music-sys-webapp" version="${project.version}"> -->
+<!-- 		<feature prerequisite="true">war</feature> -->
+<!-- 		<bundle>webbundle:mvn:org.tma.com.vn/music-sys-webapp/${project.version}/war?Web-ContextPath=musicmanager</bundle> -->
+<!-- 	</feature> -->
 
 </features>

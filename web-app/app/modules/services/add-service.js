@@ -1,4 +1,4 @@
-app.service("addNewSong", function($http, $window) {
+app.service("addNewSong", function($http, $window, $parse) {
   this.addSong = function(song) {
     swal({
       title: "Are you sure?",
@@ -8,9 +8,11 @@ app.service("addNewSong", function($http, $window) {
       dangerMode: true
     }).then(function(isConfirm) {
       if (isConfirm) {
+
         var myData = {
           name: song.name,
-          genre: song.genre
+          genre: song.genre,
+          lyrics: song.lyrics
         };
 
         var req = {

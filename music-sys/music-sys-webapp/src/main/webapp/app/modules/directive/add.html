@@ -16,11 +16,22 @@
                             <label>Name:</label>
                             <input type="text" class="form-control" placeholder="Name" ng-model="fsong.name">
                         </div>
-
+                        
                         <div class="form-group">
                             <label>Genre</label>
                             <input type="text" class="form-control" placeholder="Genre" ng-model="fsong.genre">
                         </div>
+
+                        <div class="form-group">
+                            <label>Lyrics</label>
+                            <input type="text" class="form-control"  placeholder="Lyrics"  ng-model="fsong.lyrics">
+                        </div>
+
+                        <!-- <div class="form-group" ng-hide ="true">
+                            <label>Contents Lyrics</label>
+                            <input type="text" class="form-control"  placeholder="Lyrics" ng-model="fsong.lyrics">
+                        </div> -->
+
                         <button type="submit" class="btn btn-primary float-right" ng-click="addSong()" data-dismiss = "modal">Add</button>
                     </form>
                 </div>

@@ -13,3 +13,6 @@ feature:install music-sys-rest
 feature:install music-sys-webapp
 
 service:list DataSource
+
+bundle:install -s webbundle:mvn:org.tma.com.vn/music-sys-webapp/1.0/war?Web-ContextPath=musicmanager
+

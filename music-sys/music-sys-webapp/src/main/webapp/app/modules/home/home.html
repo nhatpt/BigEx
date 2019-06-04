@@ -2,72 +2,127 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Home</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="row m-2">
-            <div class="col">
-                <form class="form-inline float-right">
-                    <div class="form-group">
-                        <label for="my-select">Language</label>
-                        <select id="my-select" class="form-control ml-2" name="">
-                            <option>English</option>
-                            <option>Vietnamese</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-        </div>
+	<div class="container">
+		<div class="row m-2">
+			<div class="col">
+				<form class="form-inline float-right">
+					<div class="form-group">
+						<label for="my-select">Language</label> <select id="my-select"
+							class="form-control ml-2" name="">
+							<option>English</option>
+							<option>Vietnamese</option>
+						</select>
+					</div>
+				</form>
+			</div>
+		</div>
 
-        <div class="row mt-5">
-            <div class="col-8">
-                <button class="btn btn-info" data-toggle="modal" data-target="#myLogin">Add</button>
-                <add-form id-modal="myLogin"></add-form>
-                <button class="btn btn-secondary" ng-click="deleteAllSong()">Delete</button>
-            </div>
+		<div class="row mt-5">
+			<div class="col-8">
+				<button class="btn btn-info" data-toggle="modal"
+					data-target="#myLogin">Add New Song</button>
+				<add-form id-modal="myLogin"></add-form>
+				<button class="btn btn-secondary" ng-click="deleteMulSong()">Delete
+					Song</button>
+				<button class="btn btn-secondary" ng-click="deleteAllSong()">Delete
+					All Song</button>
+			</div>
 
-            <div class="col-4">
-                <form class="form-inline">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                </form>
-            </div>
-        </div>
+			<div class="col-4">
+				<form class="form-inline">
+					<div class="input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-search"></i></span>
+						</div>
+						<input type="text" class="form-control" placeholder="Search"
+							ng-model="search">
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row mt-3" ng-init="load()">
+			<div class="col table-responsive-sm ">
+				<table class="table table-striped table-bordered table">
+					<tbody>
+						<tr class="d-flex">
+							<th class="col-1"><input type="checkbox" ng-model="checkAll"></th>
+							<th class="col-6">Name</th>
+							<th class="col-2">Genre</th>
+							<th class="col-3">Action</th>
+						</tr>
 
-        <div class="row mt-3" ng-init="load()">
-            <div class="col table-responsive-sm ">
-                <table class="table table-striped table-bordered table">
-                    <tbody>
-                        <tr class="d-flex">
-                            <th class="col-1"></th>
-                            <th class="col-6">Name</th>
-                            <th class="col-2">Genre</th>
-                            <th class="col-3">Action</th>
-                        </tr>
+						<tr class="d-flex"
+							ng-repeat="x in myData | toArray:false | filter:search">
+							<td class="col-1"><input type="checkbox"
+								class="checkboxSong" ng-checked="checkAll"
+								ng-change="isCheckbox()" ng-model='x.checked' value="{{x.id}}"></td>
+							<!--ng-click="isChecked($event)"-->
+							<td class="col-6">{{x.name}}</td>
+							<td class="col-2">{{x.genre}}</td>
+							<td class="col-3">
+								<button type="submit" class="btn btn-outline-dark"
+									ng-click="edit(x)">
+									<i class="far fa-edit"></i>
+								</button>
+								<button class="btn btn-outline-dark"
+									ng-click=deleteSongByID(x.id)>
+									<i class="far fa-trash-alt"></i>
+								</button>
+								<button type="submit" class="btn btn-outline-dark"
+									ng-click="play(x.id)" data-toggle="modal" data-target="#myPlay">
+									<i class="fas fa-play-circle"></i>
+								</button> <!-- Modal Form -->
+								<div class="modal" id="myPlay">
+									<div class="modal-dialog modal-dialog-centered">
+										<div class="modal-content">
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Play Song</h4>
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<!-- data-dismiss="modal" -->
+											</div>
+											<!-- Modal body -->
+											<div class="modal-body">
+												<div class="divMarquee">
+													<p>{{psong.lyrics}}</p>
+												</div>
+												<form>
+													<div class="form-group">
+														<label>Name:</label> <input type="text"
+															class="form-control" placeholder="Name"
+															ng-model="psong.name">
+													</div>
 
-                        <tr class="d-flex"  ng-repeat="x in myData track by $index">
-                            <td class="col-1"><input type="checkbox"></td>
-                            <td class="col-6">{{x.name}}</td>
-                            <td class="col-2">{{x.genre}}</td>
-                            <td class="col-3">
-                                <button class="btn btn-outline-dark" ng-click="edit(x)" ui-sref-active="active"><i class="far fa-edit"></i></button>
-                                <button class="btn btn-outline-dark" ng-click=deleteSongByID(x.id)><i class="far fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+													<div class="form-group">
+														<label>Genre</label> <input type="text"
+															class="form-control" placeholder="Genre"
+															ng-model="psong.genre">
+													</div>
+													<div class="form-group float-right">
+														<button type="submit" class="btn btn-primary">Edit
+															Song</button>
+														<button type="submit" class="btn btn-primary">Delete</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div> <!-- End Modal Form -->
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

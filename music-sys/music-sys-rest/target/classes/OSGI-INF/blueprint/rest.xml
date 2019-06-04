@@ -20,11 +20,10 @@
 		<jaxrs:serviceBeans>
 			<ref component-id="songBean" />
 		</jaxrs:serviceBeans>
-		
+				
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
-		</jaxrs:providers>
-		
+		</jaxrs:providers>		
 	</jaxrs:server>
 
 	<reference id="songService"

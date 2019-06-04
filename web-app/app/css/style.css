@@ -1,0 +1,57 @@
+.divMarquee {
+    width: relative;
+    display: inline-block;
+    position: relative; 
+    -webkit-animation: myfirst 5s infinite;/* Safari 4.0 - 8.0 */
+    -webkit-animation-direction: alternate;/* Safari 4.0 - 8.0 */
+    animation: myAni 5s infinite;
+    animation-direction: initial;
+}
+
+@-webkit-keyframes myAni 
+{ 
+    0% {left: 0px;top: -100px;} 
+    100% {left: 0px;top: 110px;} 
+}
+
+@keyframes myAni { 
+    0% {left: 0px;top: -100px;} 
+    100% {left: 0px;top: 110px;} 
+} 
+
+.modal-body{
+    overflow-y: hidden; /*This is for the overflow of moving text out of modal*/
+}
+
+
+#outer {
+    position: absolute;
+    top: 0%; left: 0%;
+    width: 100%; height: 100%;
+}
+
+#inner {
+    animation: marquee 10.0s infinite;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+#marquee {
+    width: auto;
+    color: #F00;
+}
+@-webkit-keyframes marquee {
+    0% { 
+        animation-timing-function: linear;
+        transform: translate(-45%, 0px);
+    }
+    50% { 
+        animation-timing-function: linear;
+        transform: translate(45%, 0px);
+    }
+    100% { 
+        animation-timing-function: linear;
+        transform: translate(-45%, 0px);
+    }
+}

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1559102166397
+Bnd-LastModified: 1559208970167
 Build-Jdk: 1.8.0_121
 Built-By: ptnhat
 Bundle-Blueprint: OSGI-INF/blueprint/rest.xml

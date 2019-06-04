@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
 </head>
+
 <body>
     <div class="container">
         <div class="row m-2">
@@ -27,6 +28,7 @@
             <div class="col-8">
                 <button class="btn btn-info" data-toggle="modal" data-target="#myLogin">Add New Song</button>
                 <add-form id-modal="myLogin"></add-form>
+                <button class="btn btn-secondary" ng-click="deleteMulSong()">Delete Song</button>
                 <button class="btn btn-secondary" ng-click="deleteAllSong()">Delete All Song</button>
             </div>
 
@@ -41,20 +43,21 @@
                 </form>
             </div>
         </div>
-
         <div class="row mt-3" ng-init="load()">
             <div class="col table-responsive-sm ">
                 <table class="table table-striped table-bordered table">
                     <tbody>
                         <tr class="d-flex">
-                            <th class="col-1"></th>
+                            <th class="col-1"><input type="checkbox" ng-model="checkAll"></th>
                             <th class="col-6">Name</th>
                             <th class="col-2">Genre</th>
                             <th class="col-3">Action</th>
                         </tr>
 
                         <tr class="d-flex" ng-repeat="x in myData | toArray:false | filter:search">
-                            <td class="col-1"><input type="checkbox" ng-click = "isCheck($event)"></td>
+                            <td class="col-1"><input type="checkbox" class="checkboxSong" ng-checked="checkAll"
+                                    ng-change="isCheckbox()" ng-model='x.checked' value="{{x.id}}"></td>
+                            <!--ng-click="isChecked($event)"-->
                             <td class="col-6">{{x.name}}</td>
                             <td class="col-2">{{x.genre}}</td>
                             <td class="col-3">
@@ -62,6 +65,48 @@
                                         class="far fa-edit"></i></button>
                                 <button class="btn btn-outline-dark" ng-click=deleteSongByID(x.id)><i
                                         class="far fa-trash-alt"></i></button>
+                                <button type="submit" class="btn btn-outline-dark" ng-click="play(x.id)"
+                                    data-toggle="modal" data-target="#myPlay"><i
+                                        class="fas fa-play-circle"></i></button>
+                                <!-- Modal Form -->
+                                <div class="modal" id="myPlay">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Play Song</h4>
+                                                <button type="button" class="close"
+                                                    data-dismiss="modal">&times;</button>
+                                                <!-- data-dismiss="modal" -->
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                    <div class=" divMarquee">
+                                                            {{psong.lyrics}}
+                                                    </div>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label>Name:</label>
+                                                        <input type="text" class="form-control" placeholder="Name"
+                                                            ng-model="psong.name">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>Genre</label>
+                                                        <input type="text" class="form-control" placeholder="Genre"
+                                                            ng-model="psong.genre">
+                                                    </div>
+                                                    <div class="form-group float-right">
+                                                        <button type="submit" class="btn btn-primary">Edit Song</button>
+                                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Modal Form -->
+
                             </td>
                         </tr>
                     </tbody>

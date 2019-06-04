@@ -1,4 +1,4 @@
-app.directive("addForm", function(addNewSong, $window) {
+app.directive("addForm", function(addNewSong) {
   return {
     restrict: "AEC",
     templateUrl: "app/modules/directive/add.html",

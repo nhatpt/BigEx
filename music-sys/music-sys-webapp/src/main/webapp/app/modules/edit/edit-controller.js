@@ -1,9 +1,8 @@
-app.controller('myEditCtrl', function ($scope, $http,$state, myData, $window) {
+app.controller('myEditCtrl', function ($scope, $http,$state, myData) {
     $scope.song = myData.getData();
     console.log( $scope.song);
 
     $scope.cancel = function(){
-        $window.alert("You cancelled");
         $state.go('home');
     }
     

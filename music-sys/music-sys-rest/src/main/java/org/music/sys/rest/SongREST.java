@@ -33,10 +33,6 @@ public class SongREST {
 					.header("Access-Control-Allow-Credentials", "true")
 					.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 					.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_ORIGIN, "*")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_CREDENTIALS, "true")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_HEADERS, "origin, content-type, accept, authorization")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_METHODS, "*")
 					.entity(songService.list()).build();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,7 +40,7 @@ public class SongREST {
 		}
 	}
 
-	@Path("/{id}")
+	@Path("/get/{id}")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@GET
@@ -55,10 +51,6 @@ public class SongREST {
 					.header("Access-Control-Allow-Credentials", "true")
 					.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 					.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_ORIGIN, "*")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_CREDENTIALS, "true")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_HEADERS, "origin, content-type, accept, authorization")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_METHODS, "*")
 					.entity(songService.get(id)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,10 +70,6 @@ public class SongREST {
 					.header("Access-Control-Allow-Credentials", "true")
 					.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 					.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_ORIGIN, "*")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_CREDENTIALS, "true")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_HEADERS, "origin, content-type, accept, authorization")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_METHODS, "*")
 					.build();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -95,10 +83,6 @@ public class SongREST {
 		try {
 			songService.remove(id);
 			return Response.status(Response.Status.OK)
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_ORIGIN, "*")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_CREDENTIALS, "true")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_HEADERS, "*")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_METHODS, "*")
 					.header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Credentials", "true")
 					.header("Access-Control-Allow-Headers","origin, content-type, accept, authorization")
@@ -119,17 +103,13 @@ public class SongREST {
 		try {
 			Song updateSong = songService.get(id);
 			updateSong.setName(song.getName());
-			updateSong.setgenre(song.getgenre());
+			updateSong.setGenre(song.getGenre());
 			songService.update(updateSong);
 			return Response.status(Response.Status.ACCEPTED)
 					.header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Credentials", "true")
 					.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 					.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_ORIGIN, "*")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_CREDENTIALS, "true")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_HEADERS, "origin, content-type, accept, authorization")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_METHODS, "*")
 					.build();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,7 +118,7 @@ public class SongREST {
 
 	}
 
-	@Path("/{name}")
+	@Path("/search?{name}")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@GET
@@ -149,10 +129,6 @@ public class SongREST {
 					.header("Access-Control-Allow-Credentials", "true")
 					.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 					.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_ORIGIN, "*")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_CREDENTIALS, "true")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_HEADERS, "origin, content-type, accept, authorization")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_METHODS, "*")
 					.entity(songService.getbyName(name)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -170,10 +146,6 @@ public class SongREST {
 					.header("Access-Control-Allow-Credentials", "true")
 					.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
 					.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_ORIGIN, "*")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_CREDENTIALS, "true")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_HEADERS, "origin, content-type, accept, authorization")
-//					.header(CorsHeaderConstants.HEADER_AC_ALLOW_METHODS, "*")
 					.build();
 		} catch (Exception e) {
 			e.printStackTrace();

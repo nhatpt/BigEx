@@ -23,7 +23,30 @@ public class Song implements Serializable {
 	
 	@Column(name = "genre")
 	private String genre;
+	
+	@Column(name = "lyrics")
+	private String lyrics;
 
+	public String getlyrics() {
+		return lyrics;
+	}
+
+	public void setlyrics(String lyrics) {
+		this.lyrics = lyrics;
+	}
+
+	public Song() {
+		
+	}
+	
+	public Song(Integer id, String name, String genre, String lyrics) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.genre = genre;
+		this.lyrics = lyrics;
+	}
+	
 	public Song(Integer id, String name, String genre) {
 		super();
 		this.id = id;
@@ -35,10 +58,6 @@ public class Song implements Serializable {
 		super();
 		this.name = name;
 		this.genre = genre;
-	}
-
-	public Song() {
-		
 	}
 
 	public Integer getId() {
@@ -57,11 +76,11 @@ public class Song implements Serializable {
 		this.name = name;
 	}
 
-	public String getgenre() {
+	public String getGenre() {
 		return genre;
 	}
 
-	public void setgenre(String genre) {
+	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
@@ -71,7 +90,7 @@ public class Song implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Song[id=" + id + ", name=" + name + ", genre=" + genre + "]";
+		return "Song[id=" + id + ", name=" + name + ", genre=" + genre +  ",lyrics=" + lyrics + "]";
 	}
 
 }
