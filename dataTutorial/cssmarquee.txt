@@ -1,0 +1,21 @@
+<style>
+	.maindiv{
+  border: 2px solid black;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-animation {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+  </style>
