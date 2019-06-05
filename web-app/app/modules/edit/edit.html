@@ -12,60 +12,37 @@
 
     <div class="container">
         <div class="container">
-            <div class="row m-2">
-                <div class="col">
-                    <form class="form-inline float-right">
-                        <div class="form-group">
-                            <label for="my-select">Language</label>
-                            <select id="my-select" class="form-control ml-2" name="">
-                                <option>English</option>
-                                <option>Vietnamese</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
             <div class="row mt-5">
-                <div class="col text-center">
+                <div class="col-sm text-center">
                     <h1>UPDATE SONG</h1>
                 </div>
             </div>
 
             <div class="row ">
-                <div class="col">
+                <div class="col-sm">
                     <form class="was-validated">
                         <input type="hidden" ng-model="song.id">
                         <div class="form-group">
                             <label for="uname">Name:</label>
                             <input type="text" class="form-control" id="uname" ng-init="song.name" ng-model="song.name"
                                 name="sname" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
 
                         <div class="form-group">
                             <label for="genre">Genre:</label>
                             <input type="text" class="form-control" id="genre" ng-init="song.genre"
                                 ng-model="song.genre" name="sgene" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
 
                         <div class="form-group">
                                 <label for="lyrics">Lyrics:</label>
-                                <textarea type="text" class="form-control" id="lyrics" ng-init="song.lyrics"
+                                <textarea rows="6" type="text" class="form-control" id="lyrics" ng-init="song.lyrics"
                                     ng-model="song.lyrics" required></textarea>
-                                <div class="valid-feedback">Valid.</div>
-                                <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
 
                         <div class="form-group form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember" required> I agree to
-                                update.
-                                <div class="valid-feedback">Valid.</div>
-                                <div class="invalid-feedback">Check this checkbox to continue.</div>
+                                <input class="form-check-input" type="checkbox" name="remember" required> I agree to update.
                             </label>
                         </div>
                         

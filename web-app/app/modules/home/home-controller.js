@@ -6,11 +6,25 @@ app.controller("myCtrl", function(
   $state,
   $mdDialog
 ) {
-  // Load list song
+
+  $scope.bigTotalItems = 0;
+  // $scope.bigTotalItems = size;
+  $scope.viewby = 5;
+  $scope.curPage = 1;
+  $scope.itemsPerPage = $scope.viewby;
+  $scope.maxSize = 10;
+  // Load list song with pagination
   $scope.load = function() {
     loadSong.loadList().then(function(response) {
       $scope.myData = response.data;
-    });
+      $scope.bigTotalItems = response.data.length;
+    })
+    
+  };
+  
+  $scope.changePage = function(num) {
+    $scope.itemsPerPage = num;
+    $scope.curPage = 1; //reset page
   };
 
   // Delete sonng by id
@@ -49,8 +63,7 @@ app.controller("myCtrl", function(
           }
         );
       },
-      function() {
-      }
+      function() {}
     );
   };
 
@@ -90,8 +103,7 @@ app.controller("myCtrl", function(
           }
         );
       },
-      function() {
-      }
+      function() {}
     );
   };
 
@@ -118,8 +130,9 @@ app.controller("myCtrl", function(
       .ok("OK!")
       .cancel("Cancel");
     var count = 0;
-    $mdDialog.show(confirm).then(
-      function() {
+    $mdDialog
+      .show(confirm)
+      .then(function() {
         if ($scope.arrChecked != undefined) {
           for (var i = 0; i < $scope.arrChecked.length; i++) {
             $http.delete(
@@ -139,24 +152,26 @@ app.controller("myCtrl", function(
               .targetEvent(ev)
           );
         }
-      }).then(function() {
-          if (count != 0) {
-              $mdDialog
-                .show(
-                  $mdDialog
-                    .alert()
-                    .clickOutsideToClose(true)
-                    .title("Success")
-                    .textContent("You have deleted this song.")
-                    .ariaLabel("Alert Dialog")
-                    .ok("OK")
-                    .targetEvent(ev)
-                ).then(function() {
-                  $scope.load();
-                });
-            }
-      }).catch(function() {
       })
+      .then(function() {
+        if (count != 0) {
+          $mdDialog
+            .show(
+              $mdDialog
+                .alert()
+                .clickOutsideToClose(true)
+                .title("Success")
+                .textContent("You have deleted this song.")
+                .ariaLabel("Alert Dialog")
+                .ok("OK")
+                .targetEvent(ev)
+            )
+            .then(function() {
+              $scope.load();
+            });
+        }
+      })
+      .catch(function() {});
   };
 
   $scope.status = false;

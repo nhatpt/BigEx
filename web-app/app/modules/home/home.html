@@ -2,28 +2,14 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Home</title>
 </head>
 
 <body>
 	<div class="container">
-		<!-- <div class="row m-2">
-            <div class="col">
-                <form class="form-inline float-right">
-                    <div class="form-group">
-                        <label for="my-select">Language</label>
-                        <select id="my-select" class="form-control ml-2" name="">
-                            <option>English</option>
-                            <option>Vietnamese</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-        </div> -->
-
 		<div class="row mt-3">
 			<div class="col text-center">
 				<h1>Music Manager System</h1>
@@ -31,9 +17,8 @@
 		</div>
 
 		<div class="row mt-3">
-			<div class="col-8">
-				<button class="btn btn-info" data-toggle="modal"
-					data-target="#myLogin">
+			<div class="col-sm-8">
+				<button class="btn btn-info" data-toggle="modal" data-target="#myLogin">
 					<md-tooltip md-direction='top'>Add Music</md-tooltip>
 					<i class="fas fa-plus"></i>
 				</button>
@@ -48,94 +33,95 @@
 				</button>
 			</div>
 
-			<div class="col-4">
+			<div class="col-sm-4">
 				<form class="form-inline float-right">
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-search"></i></span>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon"><i class="fas fa-search"></i></div>
+							<input type="text" class="form-control" placeholder="Search" ng-model="search">
+							<md-tooltip md-direction='top'>Search Song</md-tooltip>
 						</div>
-						<input type="text" class="form-control" placeholder="Search"
-							ng-model="search">
-						<md-tooltip md-direction='top'>Search Song</md-tooltip>
 					</div>
 				</form>
 			</div>
 		</div>
-		<div class="row mt-3" ng-init="load()">
-			<div class="col table-responsive-sm ">
+
+		<div class="row mt-3">
+			<div class="col-sm table-responsive-sm" ng-init="load()">
 				<table class="table table-striped table-bordered table">
 					<tbody>
 						<tr class="d-flex">
-							<th class="col-1"><input type="checkbox" ng-model="checkAll"></th>
-							<th class="col-6">Name</th>
-							<th class="col-2">Genre</th>
-							<th class="col-3">Action</th>
+							<th class="col-sm-1"><input type="checkbox" ng-model="checkAll"></th>
+							<th class="col-sm-6">Name</th>
+							<th class="col-sm-2">Genre</th>
+							<th class="col-sm-3">Action</th>
 						</tr>
 
-						<tr class="d-flex" ng-repeat="x in myData | filter: search">
-							<td class="col-1"><md-tooltip md-direction='left'>Select
-								Song</md-tooltip><input type="checkbox" class="checkboxSong"
-								ng-checked="checkAll" ng-change="isCheckbox()"
-								ng-model='x.checked' value="{{x.id}}"></td>
+						<tr class="d-flex" ng-repeat="x in myData.slice(((curPage-1)*itemsPerPage), ((curPage)*itemsPerPage)) | filter: search">
+							<td class="col-sm-1">
+								<md-tooltip md-direction='left'>Select
+									Song</md-tooltip><input type="checkbox" class="checkboxSong" ng-checked="checkAll"
+									ng-change="isCheckbox()" ng-model='x.checked' value="{{x.id}}">
+							</td>
 							<!--ng-click="isChecked($event)"-->
-							<td class="col-6">{{x.name}}</td>
-							<td class="col-2">{{x.genre}}</td>
-							<td class="col-3">
-								<button type="submit" class="btn btn-outline-success"
-									ng-click="play(x.id)" data-toggle="modal" data-target="#myPlay">
+							<td class="col-sm-6">{{x.name}}</td>
+							<td class="col-sm-2">{{x.genre}}</td>
+							<td class="col-sm-3">
+								<button type="submit" class="btn btn-success" ng-click="play(x.id)" data-toggle="modal"
+									data-target="#myPlay">
 									<i class="fas fa-play-circle"></i>
 									<md-tooltip md-direction='top'>Play Song</md-tooltip>
 								</button>
-								<button type="submit" class="btn btn-info"
-									ng-click="edit(x, $event)">
+								<button type="submit" class="btn btn-info" ng-click="edit(x, $event)">
 									<i class="far fa-edit"></i>
 									<md-tooltip md-direction='top'>Edit Song</md-tooltip>
 								</button>
-								<button class="btn btn-danger"
-									ng-click="deleteSongByID(x.id, $event)">
+								<button class="btn btn-danger" ng-click="deleteSongByID(x.id, $event)">
 									<i class="far fa-trash-alt"></i>
 									<md-tooltip md-direction='top'>Delete Song</md-tooltip>
-								</button> <!-- Modal Form -->
-								<div class="modal" id="myPlay">
-									<div class="modal-dialog modal-dialog-centered modal-lg">
+								</button>
+								<!-- Modal Form -->
+								<div class="modal fade" id="myPlay">
+									<div class="modal-dialog  modal-lg">
 										<div class="modal-content">
 											<!-- Modal Header -->
 											<div class="modal-header">
 												<h4 class="modal-title">Play Song</h4>
-												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<button type="button" class="close"
+													data-dismiss="modal">&times;</button>
 												<!-- data-dismiss="modal" -->
 											</div>
 											<!-- Modal body -->
 											<div class="modal-body">
 												<form>
 													<div class="form-group">
-														<label>Name:</label> <input type="text"
-															class="form-control" placeholder="Name"
-															ng-model="psong.name" disabled>
+														<label>Name:</label> <input type="text" class="form-control"
+															placeholder="Name" ng-model="psong.name" disabled>
 													</div>
 
 													<div class="form-group">
-														<label>Genre</label> <input type="text"
-															class="form-control" placeholder="Genre"
-															ng-model="psong.genre" disabled>
+														<label>Genre</label> <input type="text" class="form-control"
+															placeholder="Genre" ng-model="psong.genre" disabled>
 													</div>
 													<label>Lyrics:</label>
 													<div class="form-group">
-														<textarea class="form-control" cols="30" rows="5" disabled>{{psong.lyrics}}</textarea>
-													</div>
-													<div class="form-group float-right">
-														<button type="submit" class="btn btn-primary"
-															data-dismiss="modal" ng-click="playEditSong(psong)">
-															Edit Song
-														</button>
-														<button type="submit" class="btn btn-primary"
-															data-dismiss="modal"
-															ng-click="playDeleteSong(psong.id, $event)">
-															Delele Song
-														</button>
+														<textarea class="form-control" cols="30" rows="5"
+															disabled>{{psong.lyrics}}</textarea>
 													</div>
 												</form>
 											</div>
+
+											<div class="modal-footer">
+												<button type="submit" class="btn btn-primary" data-dismiss="modal"
+													ng-click="playEditSong(psong)">
+													Edit Song
+												</button>
+												<button type="submit" class="btn btn-primary" data-dismiss="modal"
+													ng-click="playDeleteSong(psong.id, $event)">
+													Delele Song
+												</button>
+											</div>
+
 										</div>
 									</div>
 								</div> <!-- End Modal Form -->
@@ -145,6 +131,23 @@
 				</table>
 			</div>
 		</div>
+		<div class="row">
+				<div class="col-sm-9 ">	
+				</div>
+				<div class="col-sm-3 text-right">
+						Items Per Page:
+						<select ng-model="viewby" ng-change='changePage(viewby)'
+							ng-options="x for x in [5,10,20,50]"
+						>
+						</select>
+				</div>
+		</div>
+		<div class="row">
+			<div class="col-sm text-right">
+				<ul class="pagination-sm" uib-pagination total-items="bigTotalItems" ng-model="curPage" items-per-page="itemsPerPage" boundary-links="true"></ul>
+			</div>
+		</div>
+		
 	</div>
 </body>
 
