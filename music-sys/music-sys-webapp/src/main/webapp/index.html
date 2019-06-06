@@ -5,30 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="./app/css/bootstrap.min.css">
+    <!--Font AweSome-->
     <link rel="stylesheet" href="./app/css/all.min.css">
     <link rel="stylesheet" href="./app/css/style.css">
     <!-- Angular Material requires Stylesheet Libraries -->
-    <!-- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.19/angular-material.min.css"> -->
     <link rel="stylesheet" href="./app/css/angular-material.css">
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"> </script>
+    <!-- Angular UI Bootstrap Library -->
+    <script src="./app/js/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="./app/js/jquery-3.4.1.min.js"></script>
 
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-touch.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-sanitize.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-messages.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-resource.js"></script>
 
     <!-- Angular Material Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.19/angular-material.min.js"></script>
-
-    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-
     <script src="./app/js/bootstrap.min.js"></script>
     <script src="./app/app.js"></script>
     <script src="./app/app.routing.js"></script>
@@ -42,15 +41,6 @@
     <script src="./app/modules/edit/edit-controller.js"></script>
     <title>TMA MSS Demo</title>
 </head>
-
-<script type="text/javascript">
-    function onlyOne(checkbox) {
-        var checkboxes = document.getElementsByName('check')
-        checkboxes.forEach((item) => {
-            if (item !== checkbox) item.checked = false
-        })
-    }
-</script>
 
 <body ng-app="myApp">
     <!-- only 1 checkbox use -->

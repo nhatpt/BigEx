@@ -1,41 +1,35 @@
 <!-- Modal Form -->
-<div class="modal" id = "{{idModal}}">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Add song</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <!-- data-dismiss="modal" -->
-                </div>
-    
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Name:</label>
-                            <input type="text" class="form-control" placeholder="Name" ng-model="fsong.name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Genre</label>
-                            <input type="text" class="form-control" placeholder="Genre" ng-model="fsong.genre">
-                        </div>
+<div class="modal fade" id="{{idModal}}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add song</h4>
+                <button type="button" aria-label="Close" class="close" data-dismiss="modal">&times;</button>
+            </div>
 
-                        <div class="form-group">
-                            <label>Lyrics</label>
-                            <input type="text" class="form-control"  placeholder="Lyrics"  ng-model="fsong.lyrics">
-                        </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" placeholder="Name" ng-model="fsong.name">
+                    </div>
 
-                        <!-- <div class="form-group" ng-hide ="true">
-                            <label>Contents Lyrics</label>
-                            <input type="text" class="form-control"  placeholder="Lyrics" ng-model="fsong.lyrics">
-                        </div> -->
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <input type="text" class="form-control" placeholder="Genre" ng-model="fsong.genre">
+                    </div>
 
-                        <button type="submit" class="btn btn-primary float-right" ng-click="addSong($event)" data-dismiss = "modal">Add</button>
-                    </form>
-                </div>
-            </div>  
+                    <div class="form-group">
+                        <label>Lyrics</label>
+                        <textarea cols="30" rows="5" class="form-control" placeholder="Lyrics" ng-model="fsong.lyrics"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-click="addSong($event)" data-dismiss="modal">Add</button>
+            </div>
         </div>
     </div>
-    <!-- End Modal Form -->
+</div>
+<!-- End Modal Form -->
