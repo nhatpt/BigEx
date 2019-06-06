@@ -15,15 +15,19 @@
 				<h1>Music Manager System</h1>
 			</div>
 		</div>
-
+		
 		<div class="row mt-3">
 			<div class="col-sm-8">
-				<button class="btn btn-info" data-toggle="modal" data-target="#myLogin">
+				<button class="btn" ng-click="goHomeClone()" >
+							<md-tooltip md-direction='top'>Go to Clone Home</md-tooltip>
+							<i class="fas fa-home"></i>
+						</button>
+				<button class="btn btn-info" data-toggle="modal" data-target="#myAdd">
 					<md-tooltip md-direction='top'>Add Music</md-tooltip>
 					<i class="fas fa-plus"></i>
 				</button>
-				<add-form id-modal="myLogin"></add-form>
-				<button class="btn btn-danger" ng-click="deleteMulSong($event)">
+				<add-form id-modal="myAdd"></add-form>
+				<button class="btn btn-warning" ng-click="deleteMulSong($event)">
 					<md-tooltip md-direction='top'>Delete Song</md-tooltip>
 					<i class="far fa-trash-alt"></i>
 				</button>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Home Clone</title>
+</head>
+
+<body layout="column">
+	<div class="container">
+		<div class="row mt-3">
+			<div class="col text-center">
+				<h1>Music Manager System</h1>
+			</div>
+		</div>
+		<div class="row mt-3">
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<md-button md-colors="{background: 'grey-300'}" class="md-raised" ng-click="goHome()" >
+					<md-icon aria-label="Home Song" md-svg-src="app/media/baseline-home-24px.svg"></md-icon>
+					<md-tooltip md-direction='top'>Go to Home</md-tooltip>
+				</md-button>
+
+				<md-button  md-colors="{background: 'lime'}" class="md-raised"  data-toggle="modal" data-target="#myAdd">
+					<md-icon aria-label="Add Song" md-svg-src="app/media/baseline-playlist_add-24px.svg"></md-icon>
+					<md-tooltip md-direction='top'>Add Song</md-tooltip>
+				</md-button>
+				<add-form id-modal="myAdd"></add-form>
+
+				<md-button md-colors="{background: 'warn-300'}" class="md-raised" ng-click="deleteMulSong($event)">
+					<md-icon aria-label="Delete Song" md-svg-src="app/media/baseline-delete-24px.svg"></md-icon>
+					<md-tooltip md-direction='top'>Delete Song</md-tooltip>
+				</md-button>
+
+				<md-button  md-colors="{background: 'red-500'}" class="md-raised" ng-click="deleteAllSong($event)">
+					<md-icon aria-label="Delete Song" md-svg-src="app/media/baseline-delete_forever-24px.svg"></md-icon>
+					<md-tooltip md-direction='top'>Delete All Song</md-tooltip>
+				</md-button>
+			</div>
+
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+				<form class="form-inline float-right">
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon"><i class="fas fa-search"></i></div>
+							<md-tooltip md-direction='top'>Search Song</md-tooltip>
+							<input type="text" class="form-control" placeholder="Search" ng-model="search">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="row mt-3" ng-init="load()">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<md-content layout="column" flex class="mark">
+					<md-card>
+						<md-table-container>
+							<table md-table md-row-select="true" multiple="true" ng-model="selected"
+								md-progress="promise">
+								<!--Show checkbox and multiple choice-->
+								<thead md-head md-order="query.order">
+									<tr md-row>
+										<th class="col-xs-6 col-sm-6 col-md-6 col-lg-6" md-column md-order-by="name">
+											<span>Name</span></th>
+										<th class="col-xs-3 col-sm-3 col-md-3 col-lg-3" md-column md-order-by="genre">
+											<span>Genre</span></th>
+										<th class="col-xs-3 col-sm-3 col-md-3 col-lg-3" md-column><span>Action</span>
+										</th>
+									</tr>
+								</thead>
+								<tbody md-body>
+									<tr md-row md-select="x"
+										ng-repeat="x in myData| filter: search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+										<td md-cell>{{x.name}}</td>
+										<td md-cell>{{x.genre}}</td>
+										<td md-cell>
+											<md-button class="md-icon-button md-primary" ng-click="play(x.id)"
+												data-toggle="modal" data-target="#myPlay">
+												<md-icon aria-label="Play Song"
+													md-svg-src="app/media/baseline-play_arrow-24px.svg"></md-icon>
+												<md-tooltip md-direction='top'>Play Song</md-tooltip>
+											</md-button>
+											<md-button class="md-icon-button" ng-click="edit(x)">
+												<md-icon aria-label="Edit Song"
+													md-svg-src="app/media/baseline-edit-24px.svg"></md-icon>
+												<md-tooltip md-direction='top'>Edit Song</md-tooltip>
+											</md-button>
+											<md-button class="md-icon-button md-warn"
+												ng-click="deleteSongByID(x.id, $event)">
+												<md-icon aria-label="Delete Song"
+													md-svg-src="app/media/baseline-delete-24px.svg"></md-icon>
+												<md-tooltip md-direction='top'>Delete Song</md-tooltip>
+											</md-button>
+											<!-- Modal Form -->
+											<div class="modal fade" id="myPlay">
+												<div class="modal-dialog  modal-lg">
+													<div class="modal-content">
+														<!-- Modal Header -->
+														<div class="modal-header">
+															<h4 class="modal-title">Play Song</h4>
+															<button type="button" class="close"
+																data-dismiss="modal">&times;</button>
+															<!-- data-dismiss="modal" -->
+														</div>
+														<!-- Modal body -->
+														<div class="modal-body">
+															<form>
+																<div class="form-group">
+																	<label>Name:</label> <input type="text"
+																		class="form-control" placeholder="Name"
+																		ng-model="psong.name" disabled>
+																</div>
+
+																<div class="form-group">
+																	<label>Genre</label> <input type="text"
+																		class="form-control" placeholder="Genre"
+																		ng-model="psong.genre" disabled>
+																</div>
+																<label>Lyrics:</label>
+																<div class="form-group">
+																	<textarea class="form-control" cols="30" rows="5"
+																		disabled>{{psong.lyrics}}</textarea>
+																</div>
+															</form>
+														</div>
+
+														<div class="modal-footer">
+															<button type="submit" class="btn btn-primary"
+																data-dismiss="modal" ng-click="playEditSong(psong)">
+																Edit Song
+															</button>
+															<button type="submit" class="btn btn-primary"
+																data-dismiss="modal"
+																ng-click="playDeleteSong(psong.id, $event)">
+																Delele Song
+															</button>
+														</div>
+
+													</div>
+												</div>
+											</div> <!-- End Modal Form -->
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</md-table-container>
+
+						<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
+							md-total="{{totalItems}}" md-page-select="true" md-boundary-links="true"
+							md-on-paginate="true">
+						</md-table-pagination>
+					</md-card>
+				</md-content>
+			</div>
+
+		</div>
+	</div>
+</body>
+
+</html>
