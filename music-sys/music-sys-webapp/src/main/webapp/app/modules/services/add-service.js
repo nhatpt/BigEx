@@ -18,7 +18,7 @@ app.service("addNewSong", function($http, $window, $mdDialog, $window) {
 
       var req = {
         method: "POST",
-        url: "../cxf/music/manager/system/api/",
+        url: "../cxf/music/manager/system/api/getsong/",
         headers: {
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",

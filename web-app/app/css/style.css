@@ -41,6 +41,14 @@
   margin-top: 3rem;
 }
 
+.mr-3{
+  margin-right: 3rem;
+}
+
 .float-right{
   float: right;
+}
+
+.pagination-selection{
+  margin-top: 2.5rem;
 }

@@ -13,7 +13,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'myEditCtrl'
     }
 
+    var homeclone = {
+        name: 'homeclone',
+        url: '/homeclone',
+        templateUrl: 'app/modules/homeclone/home-clone.html',
+        controller: 'homeCloneCtrl'
+    }
+
     $stateProvider.state(home)
     $stateProvider.state(edit)
+    $stateProvider.state(homeclone)
     $urlRouterProvider.otherwise('/home')
 });

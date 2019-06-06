@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
 import org.music.sys.api.Song;
 import org.music.sys.api.SongService;
 
-@Path("api")
+@Path("api/getsong")
 public class SongREST {
 	private SongService songService;
 
@@ -40,7 +40,7 @@ public class SongREST {
 		}
 	}
 
-	@Path("/get/{id}")
+	@Path("/getid/{id}")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@GET
@@ -57,7 +57,6 @@ public class SongREST {
 			return null;
 		}
 	}
-
 	@Path("/")
 	@Produces("application/json")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -104,6 +103,7 @@ public class SongREST {
 			Song updateSong = songService.get(id);
 			updateSong.setName(song.getName());
 			updateSong.setGenre(song.getGenre());
+			updateSong.setlyrics(song.getlyrics());
 			songService.update(updateSong);
 			return Response.status(Response.Status.ACCEPTED)
 					.header("Access-Control-Allow-Origin", "*")

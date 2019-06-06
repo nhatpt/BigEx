@@ -4,11 +4,10 @@ app.controller("myCtrl", function(
   loadSong,
   myData,
   $state,
-  $mdDialog,
+  $mdDialog
 ) {
 
   $scope.bigTotalItems = 0;
-  // $scope.bigTotalItems = size;
   $scope.viewby = 5;
   $scope.curPage = 1;
   $scope.itemsPerPage = $scope.viewby;
@@ -26,6 +25,14 @@ app.controller("myCtrl", function(
     $scope.itemsPerPage = num;
     $scope.curPage = 1; //reset page
   };
+
+  $scope.$watch('curPage + itemsPerPage', function() {
+    $scope.begin = (($scope.curPage - 1) * $scope.itemsPerPage);
+    $scope.end = $scope.begin + $scope.itemsPerPage;
+  });
+
+  
+ 
 
   // Delete sonng by id
   $scope.deleteSongByID = function(id, ev) {

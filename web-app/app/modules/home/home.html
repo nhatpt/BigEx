@@ -17,7 +17,7 @@
 		</div>
 		
 		<div class="row mt-3">
-			<div class="col-sm-8">
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<button class="btn" ng-click="goHomeClone()" >
 							<md-tooltip md-direction='top'>Go to Clone Home</md-tooltip>
 							<i class="fas fa-home"></i>
@@ -37,7 +37,7 @@
 				</button>
 			</div>
 
-			<div class="col-sm-4">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 				<form class="form-inline float-right">
 					<div class="form-group">
 						<div class="input-group">
@@ -51,26 +51,28 @@
 		</div>
 
 		<div class="row mt-3">
-			<div class="col-sm table-responsive-sm" ng-init="load()">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 table-responsive-sm" ng-init="load()">
 				<table class="table table-striped table-bordered table">
 					<tbody>
 						<tr class="d-flex">
-							<th class="col-sm-1"><input type="checkbox" ng-model="checkAll"></th>
-							<th class="col-sm-6">Name</th>
-							<th class="col-sm-2">Genre</th>
-							<th class="col-sm-3">Action</th>
+							<th class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><input type="checkbox" ng-model="checkAll"></th>
+							<th class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Name</th>
+							<th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Genre</th>
+							<th class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Action</th>
 						</tr>
 
-						<tr class="d-flex" ng-repeat="x in myData.slice(((curPage-1)*itemsPerPage), ((curPage)*itemsPerPage)) | filter: search">
-							<td class="col-sm-1">
+						<!-- <tr class="d-flex" ng-repeat="x in myData.slice(((curPage-1)*itemsPerPage), ((curPage)*itemsPerPage)) | filter: search"> -->
+								<tr class="d-flex"
+								ng-repeat="x in myData | filter: search |  orderBy:'-id' | limitTo: itemsPerPage : (curPage-1) * itemsPerPage">
+							<td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
 								<md-tooltip md-direction='left'>Select
 									Song</md-tooltip><input type="checkbox" class="checkboxSong" ng-checked="checkAll"
 									ng-change="isCheckbox()" ng-model='x.checked' value="{{x.id}}">
 							</td>
 							<!--ng-click="isChecked($event)"-->
-							<td class="col-sm-6">{{x.name}}</td>
-							<td class="col-sm-2">{{x.genre}}</td>
-							<td class="col-sm-3">
+							<td>{{x.name}}</td>
+							<td>{{x.genre}}</td>
+							<td>
 								<button type="submit" class="btn btn-success" ng-click="play(x.id)" data-toggle="modal"
 									data-target="#myPlay">
 									<i class="fas fa-play-circle"></i>
@@ -86,7 +88,7 @@
 								</button>
 								<!-- Modal Form -->
 								<div class="modal fade" id="myPlay">
-									<div class="modal-dialog  modal-lg">
+									<div class="modal-dialog modal-lg">
 										<div class="modal-content">
 											<!-- Modal Header -->
 											<div class="modal-header">
@@ -135,20 +137,12 @@
 				</table>
 			</div>
 		</div>
-		<div class="row">
-				<div class="col-sm-9 ">	
-				</div>
-				<div class="col-sm-3 text-right">
-						Items Per Page:
-						<select ng-model="viewby" ng-change='changePage(viewby)'
-							ng-options="x for x in [5,10,20,50]"
-						>
-						</select>
-				</div>
-		</div>
-		<div class="row">
-			<div class="col-sm text-right">
-				<ul class="pagination-sm" uib-pagination total-items="bigTotalItems" ng-model="curPage" items-per-page="itemsPerPage" boundary-links="true"></ul>
+		<div class="row table-bordered">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
+					<label for="rpp">Rows per page:</label>
+					<select  class="pagination-selection"  ng-model="viewby" ng-change='changePage(viewby)' ng-options="x for x in [5,10,20,50]" id="rpp"> </select>
+					<label for="rpp" class="mr-3">{{begin+1}}-{{end}} of {{bigTotalItems}}</label>
+				<span class="pagination-sm float-right" uib-pagination total-items="bigTotalItems" ng-model="curPage" items-per-page="itemsPerPage" boundary-links="true"></span>
 			</div>
 		</div>
 		

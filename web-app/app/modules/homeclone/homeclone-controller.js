@@ -10,7 +10,7 @@ app.controller("homeCloneCtrl", function(
   $scope.limitOptions = [5, 10, 15, 20, 25, 50];
 
   $scope.query = {
-    order: "name",
+    order: "-id",
     limit: 5,
     page: 1
   };
@@ -186,7 +186,7 @@ app.controller("homeCloneCtrl", function(
   };
 
    // Go Home
-   $scope.goHome = function(x) {
+  $scope.goHome = function(x) {
     $state.go("home");
   };
 });

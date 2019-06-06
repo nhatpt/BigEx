@@ -20,10 +20,16 @@ app.controller('myEditCtrl',
 						'lyrics' : song.lyrics
 					};
 
-					$http.put('../cxf/music/manager/system/api/' + song.id,
+					$http.put('../cxf/music/manager/system/api/getsong/' + song.id,
 							JSON.stringify(data)).then(
 							function(response) {
-								$state.go('home');
+								$mdDialog.show($mdDialog.alert().clickOutsideToClose(true)
+										.title("Notice").textContent(
+												"Update Success")
+										.ariaLabel("Alert Dialog").ok("OK")
+										.targetEvent(ev)).then(function(){
+											$state.go('home');
+										});
 							},
 							function(errResponse) {
 								console.log("Error while update song with id:"
