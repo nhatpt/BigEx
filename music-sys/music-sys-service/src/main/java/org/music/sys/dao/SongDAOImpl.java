@@ -2,7 +2,6 @@ package org.music.sys.dao;
 
 import java.util.List;
 
-import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -39,14 +38,7 @@ public class SongDAOImpl implements SongDAO{
 		entityManager.persist(song);
 		entityManager.flush();
 	}
-
-	@Transactional(Transactional.TxType.REQUIRES_NEW)
-	@Override
-	public void remove(int id) {
-		Song song = get(id);
-		entityManager.remove(song);		
-	}
-
+	
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	@Override
 	public void update(Song song) {
@@ -55,17 +47,24 @@ public class SongDAOImpl implements SongDAO{
 
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	@Override
-	public List<Song> getbyName(String name) {
-		TypedQuery<Song> query = entityManager
-				.createQuery("select s from Song s where lower(s.name) LIKE lower(:name)", Song.class);
-		query.setParameter("name", "%" + name + "%");
-		return query.getResultList();
+	public void remove(int id) {
+		Song song = get(id);
+		entityManager.remove(song);		
 	}
 	
 	@Transactional(Transactional.TxType.REQUIRES_NEW)
 	@Override
 	public void removeAll() {
 		entityManager.createQuery("delete from Song").executeUpdate();				
+	}
+	
+	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	@Override
+	public List<Song> getbyName(String name) {
+		TypedQuery<Song> query = entityManager
+				.createQuery("select s from Song s where lower(s.name) LIKE lower(:name)", Song.class);
+		query.setParameter("name", "%" + name + "%");
+		return query.getResultList();
 	}
 	
 	@Transactional(Transactional.TxType.REQUIRES_NEW)

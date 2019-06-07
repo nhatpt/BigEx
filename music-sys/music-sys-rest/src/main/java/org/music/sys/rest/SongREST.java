@@ -42,7 +42,7 @@ public class SongREST {
 
 	@Path("/getid/{id}")
 	@Produces("application/json")
-	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@GET
 	public Response get(@PathParam("id") Integer id) {
 		try {
@@ -75,7 +75,6 @@ public class SongREST {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
 	}
-
 	@Path("/{id}")
 	@DELETE
 	public Response remove(@PathParam("id") int id) {

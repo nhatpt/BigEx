@@ -178,8 +178,6 @@ app.controller("myCtrl", function(
       })
       .catch(function() {});
   };
-
- 
   // Save data to Edit:
   $scope.edit = function(d) {
       myData.setData(d);
