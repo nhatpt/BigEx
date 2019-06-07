@@ -23,3 +23,4 @@ public interface SongDAO {
 	Integer getCountListSong();
 	List<Song> getSongPagination(int begin,  int size);
 }
+

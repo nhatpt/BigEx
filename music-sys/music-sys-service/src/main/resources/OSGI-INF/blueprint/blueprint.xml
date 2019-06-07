@@ -21,3 +21,4 @@
 	<service ref="songService"
 		interface="org.music.sys.api.SongService" />
 </blueprint>
+

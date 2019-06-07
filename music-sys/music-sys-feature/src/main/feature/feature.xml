@@ -41,11 +41,6 @@
 		<bundle>mvn:org.tma.com.vn/music-sys-service/${project.version}</bundle>
 	</feature>
 
-<!-- 	<feature name="music-sys-cmd" version="${project.version}"> -->
-<!-- 		<feature version="${project.version}">music-sys-rest</feature> -->
-<!-- 		<bundle>mvn:org.tma.com.vn/music-sys-cmd/${project.version}</bundle> -->
-<!-- 	</feature> -->
-
 	<feature name="music-sys-rest" version="${project.version}">
 		<feature version="${project.version}">music-sys-api</feature>
 		<feature version="${project.version}">music-sys-service</feature>

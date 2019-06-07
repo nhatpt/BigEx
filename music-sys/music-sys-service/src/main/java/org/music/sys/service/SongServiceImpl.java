@@ -56,5 +56,4 @@ public class SongServiceImpl implements SongService {
 	public List<Song> getSongPagination(int begin, int size) {
 		return songDAO.getSongPagination(begin, size);
 	}
-
 }
