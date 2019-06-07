@@ -4,7 +4,8 @@ app.controller("homeCloneCtrl", function(
   myData,
   $state,
   $mdDialog,
-  loadSong
+  loadSong,
+  $window
 ) {
   $scope.selected = [];
   $scope.limitOptions = [5, 10, 15, 20, 25, 50];
@@ -15,13 +16,30 @@ app.controller("homeCloneCtrl", function(
     page: 1
   };
 
+  $scope.loadFirst = function(){
+	  $http.get("../cxf/music/manager/system/api/getsong/count").then(function(response){
+	    $scope.totalItemsQuery = response.data;
+	  });
+	}
+
+	$scope.dataPagiSong = function(size, page){
+	  $http.get("../cxf/music/manager/system/api/getsong/pagi/"+ size +"/"+ page).then(function(response){
+	    $scope.myData = response.data;
+	  });
+	}
+
+
+	$scope.$watch('query.page + query.limit', function(){
+	  $scope.dataPagiSong($scope.query.limit, $scope.query.page);
+	});
+
   // Load list song with pagination
-  $scope.load = function() {
-    loadSong.loadList().then(function(response) {
-      $scope.myData = response.data;
-      $scope.totalItems = response.data.length;
-    });
-  };
+  // $scope.load = function() {
+  // loadSong.loadList().then(function(response) {
+  // $scope.myData = response.data;
+  // $scope.totalItems = response.data.length;
+  // });
+  // };
 
   // Delete sonng by id
   $scope.deleteSongByID = function(id, ev) {
@@ -49,10 +67,9 @@ app.controller("homeCloneCtrl", function(
                   .ariaLabel("Alert Dialog")
                   .ok("OK")
                   .targetEvent(ev)
-              )
-              .then(function() {
-                $scope.load();
-              });
+              ).then(function() {
+            	  $window.location.reload();
+            	  });
           },
           function(errResponse) {
             console.log("Error: " + errResponse.status);
@@ -91,7 +108,7 @@ app.controller("homeCloneCtrl", function(
                   .targetEvent(ev)
               )
               .then(function() {
-                $scope.load();
+            	  $window.location.reload();
               });
           },
           function(errResponse) {
@@ -105,7 +122,6 @@ app.controller("homeCloneCtrl", function(
 
   // Delete sonng by Multi-id:
   $scope.deleteMulSong = function(ev) {
-	 var count = 0;
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog
       .confirm()
@@ -115,6 +131,7 @@ app.controller("homeCloneCtrl", function(
       .targetEvent(ev)
       .ok("OK!")
       .cancel("Cancel");
+    var count = 0;
     $mdDialog
       .show(confirm)
       .then(function() {
@@ -150,8 +167,9 @@ app.controller("homeCloneCtrl", function(
                 .ariaLabel("Alert Dialog")
                 .ok("OK")
                 .targetEvent(ev)
-            ).then(function() {
-              $scope.load();
+            )
+            .then(function() {
+            	$window.location.reload();
             });
         }
       })
@@ -162,6 +180,7 @@ app.controller("homeCloneCtrl", function(
   // Save data to Edit:
   $scope.edit = function(d) {
       myData.setData(d);
+      myData.setStatus("homeclone");
       $state.go("edit");
   };
 
@@ -177,6 +196,7 @@ app.controller("homeCloneCtrl", function(
   // play-EditSong
   $scope.playEditSong = function(x) {
     myData.setData(x);
+    myData.setStatus("homeclone");
     $state.go("edit");
   };
 
@@ -186,7 +206,7 @@ app.controller("homeCloneCtrl", function(
   };
 
    // Go Home
-   $scope.goHome = function(x) {
+  $scope.goHome = function(x) {
     $state.go("home");
   };
 });

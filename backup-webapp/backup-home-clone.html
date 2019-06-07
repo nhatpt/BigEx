@@ -52,8 +52,7 @@
 			</div>
 		</div>
 
-		<div class="row mt-3" ng-init = "loadFirst()" >
-				<!-- ng-init="load()" -->
+		<div class="row mt-3" ng-init="load()">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<md-content layout="column" flex class="mark">
 					<md-card>
@@ -73,8 +72,7 @@
 								</thead>
 								<tbody md-body>
 									<tr md-row md-select="x"
-										ng-repeat="x in myData| filter: search | orderBy: query.order">
-										<!-- | limitTo: query.limit : (query.page -1) * query.limit -->
+										ng-repeat="x in myData| filter: search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
 										<td md-cell>{{x.name}}</td>
 										<td md-cell>{{x.genre}}</td>
 										<td md-cell>
@@ -150,12 +148,12 @@
 						</md-table-container>
 
 						<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
-							md-total="{{totalItemsQuery}}" md-page-select="true" md-boundary-links="true"
+							md-total="{{totalItems}}" md-page-select="true" md-boundary-links="true"
 							md-on-paginate="true">
 						</md-table-pagination>
 					</md-card>
 				</md-content>
-			</div>
+			</div>{{totalItemsQuery}}
 		</div>
 	</div>
 </body>

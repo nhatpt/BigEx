@@ -14,6 +14,12 @@ public interface SongService {
 	void remove(int id);
 
 	void removeAll();
-	
+
 	List<Song> getbyName(String name);
+	
+//	Get Pagination API:
+	Integer getCountListSong();
+	List<Song> getSongPagination(int begin,  int size);
+		
 }
+

@@ -31,9 +31,6 @@ app.controller("myCtrl", function(
     $scope.end = $scope.begin + $scope.itemsPerPage;
   });
 
-  
- 
-
   // Delete sonng by id
   $scope.deleteSongByID = function(id, ev) {
     // Appending dialog to document.body to cover sidenav in docs app
@@ -48,7 +45,7 @@ app.controller("myCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("../cxf/music/manager/system/api/" + id).then(
+        $http.delete("../cxf/music/manager/system/api/getsong/" + id).then(
           function() {
             $mdDialog
               .show(
@@ -88,7 +85,7 @@ app.controller("myCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("../cxf/music/manager/system/api/deleteAll").then(
+        $http.delete("../cxf/music/manager/system/api/getsong/deleteAll").then(
           function() {
             $mdDialog
               .show(
@@ -144,7 +141,7 @@ app.controller("myCtrl", function(
         if ($scope.arrChecked.length != 0) {
           for (var i = 0; i < $scope.arrChecked.length; i++) {
             $http.delete(
-              "../cxf/music/manager/system/api/" + $scope.arrChecked[i]
+              "../cxf/music/manager/system/api/getsong/" + $scope.arrChecked[i]
             );
             count++;
           }
@@ -182,40 +179,18 @@ app.controller("myCtrl", function(
       .catch(function() {});
   };
 
-  $scope.status = false;
+ 
   // Save data to Edit:
-  $scope.edit = function(d, ev) {
-    for (var i = 0; i < $scope.myData.length; i++) {
-      if ($scope.myData[i].checked == true && $scope.myData[i].id == d.id) {
-        $scope.status = true;
-        break;
-      } else {
-        continue;
-      }
-    }
-    if ($scope.status) {
+  $scope.edit = function(d) {
       myData.setData(d);
+      myData.setStatus("home");
       $state.go("edit");
-    } else {
-      $mdDialog.show(
-        $mdDialog
-          .alert()
-          .clickOutsideToClose(true)
-          .title("Warning")
-          .textContent(
-            "You need to select least a song and true song have checked."
-          )
-          .ariaLabel("Alert Dialog")
-          .ok("OK")
-          .targetEvent(ev)
-      );
-    }
   };
 
   // Play a song:
   $scope.play = function(id) {
     $http
-      .get("../cxf/music/manager/system/api/get/" + id)
+      .get("../cxf/music/manager/system/api/get/getsong/" + id)
       .then(function(response) {
         $scope.psong = response.data;
       });
@@ -224,6 +199,7 @@ app.controller("myCtrl", function(
   // play-EditSong
   $scope.playEditSong = function(x) {
     myData.setData(x);
+    myData.setStatus("home");
     $state.go("edit");
   };
 

@@ -15,13 +15,30 @@ app.controller("homeCloneCtrl", function(
     page: 1
   };
 
+$scope.loadFirst = function(){
+  $http.get("http://localhost:8181/cxf/music/manager/system/api/getsong/count").then(function(response){
+    $scope.totalItemsQuery = response.data;
+  });
+}
+
+$scope.dataPagiSong = function(size, page){
+  $http.get("http://localhost:8181/cxf/music/manager/system/api/getsong/pagi/"+ size +"/"+ page).then(function(response){
+    $scope.myData = response.data;
+  });
+}
+
+
+$scope.$watch('query.page + query.limit', function(){
+  $scope.dataPagiSong($scope.query.limit, $scope.query.page);
+});
+
   // Load list song with pagination
-  $scope.load = function() {
-    loadSong.loadList().then(function(response) {
-      $scope.myData = response.data;
-      $scope.totalItems = response.data.length;
-    });
-  };
+  // $scope.load = function() {
+  //   loadSong.loadList().then(function(response) {
+  //     $scope.myData = response.data;
+  //     $scope.totalItems = response.data.length;
+  //   });
+  // };
 
   // Delete sonng by id
   $scope.deleteSongByID = function(id, ev) {
@@ -37,7 +54,7 @@ app.controller("homeCloneCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("../cxf/music/manager/system/api/" + id).then(
+        $http.delete("../cxf/music/manager/system/api/getsong/" + id).then(
           function() {
             $mdDialog
               .show(
@@ -49,9 +66,8 @@ app.controller("homeCloneCtrl", function(
                   .ariaLabel("Alert Dialog")
                   .ok("OK")
                   .targetEvent(ev)
-              )
-              .then(function() {
-                $scope.load();
+              ).then(function() {
+                $scope.dataPagiSong($scope.query.limit, $scope.query.page);
               });
           },
           function(errResponse) {
@@ -77,7 +93,7 @@ app.controller("homeCloneCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("../cxf/music/manager/system/api/deleteAll").then(
+        $http.delete("../cxf/music/manager/system/api/getsong/deleteAll").then(
           function() {
             $mdDialog
               .show(
@@ -121,7 +137,7 @@ app.controller("homeCloneCtrl", function(
         if ($scope.selected.length != 0) {
           for (var i = 0; i < $scope.selected.length; i++) {
             $http.delete(
-              "../cxf/music/manager/system/api/" + $scope.selected[i].id
+              "../cxf/music/manager/system/api/getsong/" + $scope.selected[i].id
             );
           }
         } else {
@@ -162,13 +178,14 @@ app.controller("homeCloneCtrl", function(
   // Save data to Edit:
   $scope.edit = function(d) {
       myData.setData(d);
+      myData.setStatus("homeclone");
       $state.go("edit");
   };
 
   // Play a song:
   $scope.play = function(id) {
     $http
-      .get("../cxf/music/manager/system/api/get/" + id)
+      .get("../cxf/music/manager/system/api/getsong/getid/" + id)
       .then(function(response) {
         $scope.psong = response.data;
       });

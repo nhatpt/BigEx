@@ -2,6 +2,7 @@ package org.music.sys.dao;
 
 import java.util.List;
 
+import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -65,5 +66,21 @@ public class SongDAOImpl implements SongDAO{
 	@Override
 	public void removeAll() {
 		entityManager.createQuery("delete from Song").executeUpdate();				
+	}
+	
+	@Transactional(Transactional.TxType.REQUIRES_NEW)
+	@Override
+	public Integer getCountListSong() {
+		TypedQuery<Long> query = entityManager.createQuery("select count(s) from Song s", Long.class);//Song need to same as class
+		return query.getSingleResult() != null ? Integer.parseInt(query.getSingleResult().toString()) : 0;
+	}
+
+	@Override
+	public List<Song> getSongPagination(int begin, int size) {
+		TypedQuery<Song> query = entityManager
+				.createQuery("select s from Song s order by s.name", Song.class);
+		query.setFirstResult((begin - 1) * size); 
+		query.setMaxResults(size);
+		return query.getResultList();
 	}
 }

@@ -47,4 +47,14 @@ public class SongServiceImpl implements SongService {
 		return songDAO.getbyName(name);
 	}
 
+	@Override
+	public Integer getCountListSong() {
+		return songDAO.getCountListSong();
+	}
+
+	@Override
+	public List<Song> getSongPagination(int begin, int size) {
+		return songDAO.getSongPagination(begin, size);
+	}
+
 }

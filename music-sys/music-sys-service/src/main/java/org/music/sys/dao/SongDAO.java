@@ -18,4 +18,8 @@ public interface SongDAO {
 	void update(Song song);
 	
 	List<Song> getbyName(String name);
+
+//	Get Pagination API:
+	Integer getCountListSong();
+	List<Song> getSongPagination(int begin,  int size);
 }

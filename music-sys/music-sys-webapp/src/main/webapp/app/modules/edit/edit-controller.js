@@ -2,8 +2,9 @@ app.controller('myEditCtrl',
 		function($scope, $http, $state, myData, $mdDialog) {
 	
 			$scope.song = myData.getData();
+			$scope.status = myData.getStatus();
 			console.log($scope.song);
-
+			console.log($scope.status);
 			$scope.cancel = function() {
 				$state.go('home');
 			}
@@ -27,8 +28,13 @@ app.controller('myEditCtrl',
 										.title("Notice").textContent(
 												"Update Success")
 										.ariaLabel("Alert Dialog").ok("OK")
-										.targetEvent(ev)).then(function(){
-											$state.go('home');
+										.targetEvent(ev)).then(function(response){
+											if($scope.status == "home"){
+												$state.go('home');
+											}
+											if($scope.status == "homeclone"){
+												$state.go('homeclone');
+											}
 										});
 							},
 							function(errResponse) {

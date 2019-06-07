@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1559809036009
+Bnd-LastModified: 1559878622462
 Build-Jdk: 1.8.0_121
 Built-By: ptnhat
 Bundle-Blueprint: OSGI-INF/blueprint/blueprint.xml
@@ -11,9 +11,9 @@ Created-By: Apache Maven Bundle Plugin
 DynamicImport-Package: org.hibernate.proxy,javassist.util.proxy
 Export-Package: org.music.sys.service;uses:="org.music.sys.api";version=
  "1.0.0"
-Export-Service: org.music.sys.dao.SongDAO;osgi.service.blueprint.compnam
- e=songDAO,org.music.sys.api.SongService;osgi.service.blueprint.compname
- =songService
+Export-Service: org.music.sys.api.SongService;osgi.service.blueprint.com
+ pname=songService,org.music.sys.dao.SongDAO;osgi.service.blueprint.comp
+ name=songDAO
 Import-Package: javax.persistence;version="[2,3)",javax.transaction;vers
  ion="[1.2,2)",org.music.sys.api;version="[1.0,2)",org.osgi.service.blue
  print;version="[1.0.0,2.0.0)",org.hibernate.proxy;resolution:=optional,

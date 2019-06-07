@@ -1,18 +1,15 @@
 app.controller('myEditCtrl',
 		function($scope, $http, $state, myData, $mdDialog) {
-	
+			$scope.status = myData.getStatus();
 			$scope.song = myData.getData();
+			console.log($scope.status);			
 			console.log($scope.song);
-
 			$scope.cancel = function() {
 				$state.go('home');
 			}
 
 			$scope.updateSong = function(song, ev) {
-				console.log(song.name);
-				console.log(song.genre);
-				console.log(song.lyrics);
-				console.log($scope.checked);
+				
 				if (song.name != '' && song.genre != '' && song.lyrics != '' && $scope.checked == true) {
 					var data = {
 						'name' : song.name,
@@ -20,10 +17,16 @@ app.controller('myEditCtrl',
 						'lyrics' : song.lyrics
 					};
 
-					$http.put('../cxf/music/manager/system/api/' + song.id,
+					$http.put('../cxf/music/manager/system/api/getsong/' + song.id,
 							JSON.stringify(data)).then(
 							function(response) {
-								$state.go('home');
+								
+								if($scope.status == "home"){
+									$state.go('home');
+								}
+								if($scope.status == "homeclone"){
+									$state.go('homeclone');
+								}
 							},
 							function(errResponse) {
 								console.log("Error while update song with id:"
