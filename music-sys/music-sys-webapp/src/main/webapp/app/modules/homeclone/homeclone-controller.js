@@ -7,6 +7,7 @@ app.controller("homeCloneCtrl", function(
   loadSong,
   $window
 ) {
+	
   $scope.selected = [];
   $scope.limitOptions = [5, 10, 15, 20, 25, 50];
 
@@ -27,7 +28,6 @@ app.controller("homeCloneCtrl", function(
 	    $scope.myData = response.data;
 	  });
 	}
-
 
 	$scope.$watch('query.page + query.limit', function(){
 	  $scope.dataPagiSong($scope.query.limit, $scope.query.page);
@@ -193,17 +193,17 @@ app.controller("homeCloneCtrl", function(
       });
   };
 
-  // play-EditSong
-  $scope.playEditSong = function(x) {
-    myData.setData(x);
-    myData.setStatus("homeclone");
-    $state.go("edit");
-  };
-
-  // play-DeleteSong:
-  $scope.playDeleteSong = function(x, ev) {
-    $scope.deleteSongByID(x, ev);
-  };
+//  // play-EditSong
+//  $scope.playEditSong = function(x) {
+//    myData.setData(x);
+//    myData.setStatus("homeclone");
+//    $state.go("edit");
+//  };
+//
+//  // play-DeleteSong:
+//  $scope.playDeleteSong = function(x, ev) {
+//    $scope.deleteSongByID(x, ev);
+//  };
 
    // Go Home
   $scope.goHome = function(x) {

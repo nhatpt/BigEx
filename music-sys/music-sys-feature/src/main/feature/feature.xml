@@ -55,7 +55,6 @@
 		<bundle dependency="true">mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
 		<bundle>mvn:org.tma.com.vn/music-sys-rest/${project.version}</bundle>
 	</feature>
-	
 
 <!-- 	<feature name="music-sys-webapp" version="${project.version}"> -->
 <!-- 		<feature prerequisite="true">war</feature> -->

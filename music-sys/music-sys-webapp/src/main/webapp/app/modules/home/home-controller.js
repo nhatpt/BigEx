@@ -21,6 +21,7 @@ app.controller("myCtrl", function(
     })
   };
   
+
   $scope.changePage = function(num) {
     $scope.itemsPerPage = num;
     $scope.curPage = 1; //reset page
@@ -31,45 +32,6 @@ app.controller("myCtrl", function(
     $scope.end = $scope.begin + $scope.itemsPerPage;
   });
 
-  // Delete sonng by id
-  $scope.deleteSongByID = function(id, ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    var confirm = $mdDialog
-      .confirm()
-      .title("Would you like to delete this song?")
-      .textContent("You will delete this song get out your list song")
-      .ariaLabel("Lucky day")
-      .targetEvent(ev)
-      .ok("OK!")
-      .cancel("Cancel");
-
-    $mdDialog.show(confirm).then(
-      function() {
-        $http.delete("../cxf/music/manager/system/api/getsong/" + id).then(
-          function() {
-            $mdDialog
-              .show(
-                $mdDialog
-                  .alert()
-                  .clickOutsideToClose(true)
-                  .title("Notice")
-                  .textContent("Success")
-                  .ariaLabel("Alert Dialog")
-                  .ok("OK")
-                  .targetEvent(ev)
-              )
-              .then(function() {
-                $scope.load();
-              });
-          },
-          function(errResponse) {
-            console.log("Error: " + errResponse.status);
-          }
-        );
-      },
-      function() {}
-    );
-  };
 
   // Delete all sonng:
   $scope.deleteAllSong = function(ev) {
@@ -178,15 +140,55 @@ app.controller("myCtrl", function(
       })
       .catch(function() {});
   };
-
+  
   $scope.status = false;
   // Save data to Edit:
-  $scope.edit = function(d, ev) {
+  $scope.edit = function(d) {
       myData.setData(d);
       myData.setStatus("home");
       $state.go("edit");
   };
 
+  // Delete sonng by id
+  $scope.deleteSongByID = function(id, ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog
+      .confirm()
+      .title("Would you like to delete this song?")
+      .textContent("You will delete this song get out your list song")
+      .ariaLabel("Lucky day")
+      .targetEvent(ev)
+      .ok("OK!")
+      .cancel("Cancel");
+
+    $mdDialog.show(confirm).then(
+      function() {
+        $http.delete("../cxf/music/manager/system/api/getsong/" + id).then(
+          function() {
+            $mdDialog
+              .show(
+                $mdDialog
+                  .alert()
+                  .clickOutsideToClose(true)
+                  .title("Notice")
+                  .textContent("Success")
+                  .ariaLabel("Alert Dialog")
+                  .ok("OK")
+                  .targetEvent(ev)
+              )
+              .then(function() {
+                $scope.load();
+              });
+          },
+          function(errResponse) {
+            console.log("Error: " + errResponse.status);
+          }
+        );
+      },
+      function() {}
+    );
+  };
+  
   // Play a song:
   $scope.play = function(id) {
     $http
@@ -196,17 +198,17 @@ app.controller("myCtrl", function(
       });
   };
 
-  // play-EditSong
-  $scope.playEditSong = function(x) {
-    myData.setData(x);
-    myData.setStatus("home");
-    $state.go("edit");
-  };
-
-  // play-DeleteSong:
-  $scope.playDeleteSong = function(x, ev) {
-    $scope.deleteSongByID(x, ev);
-  };
+//  // play-EditSong
+//  $scope.playEditSong = function(x) {
+//    myData.setData(x);
+//    myData.setStatus("home");
+//    $state.go("edit");
+//  };
+//
+//  // play-DeleteSong:
+//  $scope.playDeleteSong = function(x, ev) {
+//    $scope.deleteSongByID(x, ev);
+//  };
 
    // Go to Home Clone
    $scope.goHomeClone = function() {

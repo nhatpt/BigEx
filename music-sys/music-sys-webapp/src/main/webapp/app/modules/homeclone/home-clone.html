@@ -106,6 +106,7 @@
 																data-dismiss="modal">&times;</button>
 															<!-- data-dismiss="modal" -->
 														</div>
+														
 														<!-- Modal body -->
 														<div class="modal-body">
 															<form>
@@ -130,16 +131,15 @@
 
 														<div class="modal-footer">
 															<button type="submit" class="btn btn-primary"
-																data-dismiss="modal" ng-click="playEditSong(psong)">
+																data-dismiss="modal" ng-click="edit(psong)">
 																Edit Song
 															</button>
 															<button type="submit" class="btn btn-primary"
 																data-dismiss="modal"
-																ng-click="playDeleteSong(psong.id, $event)">
+																ng-click="deleteSongByID(psong.id, $event)">
 																Delele Song
 															</button>
-														</div>
-
+													</div>
 													</div>
 												</div>
 											</div> <!-- End Modal Form -->
