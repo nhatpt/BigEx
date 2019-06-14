@@ -16,7 +16,7 @@ To use re-build this project, you need install Karaf
 
 ### Installing
 
-Download music-app and build:
+Download music-sys and build:
 
 ```
 mvn clean install
