@@ -16,7 +16,7 @@ To use re-build this project, you need install Karaf
 
 ### Installing
 
-Build Maven:
+Download music-app and build:
 
 ```
 mvn clean install
