@@ -1,1 +1,1 @@
-# BigEx
+<span align = "center"> BigEx <span>
