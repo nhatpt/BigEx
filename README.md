@@ -12,9 +12,7 @@ Use Karaf war to build Front-end web-app
 
 To use re-build this project, you need install Karaf
 
-```
 * [Karaf Runtime](https://karaf.apache.org/download.html) - The projetc apache used
-```
 
 ### Installing
 
