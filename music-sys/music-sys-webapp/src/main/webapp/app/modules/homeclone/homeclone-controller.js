@@ -4,7 +4,6 @@ app.controller("homeCloneCtrl", function(
   myData,
   $state,
   $mdDialog,
-  loadSong,
   $window
 ) {
 	
@@ -26,20 +25,13 @@ app.controller("homeCloneCtrl", function(
 	$scope.dataPagiSong = function(size, page){
 	  $http.get("../cxf/music/manager/system/api/getsong/pagi/"+ size +"/"+ page).then(function(response){
 	    $scope.myData = response.data;
+	    $scope.selected = [];
 	  });
 	}
 
 	$scope.$watch('query.page + query.limit', function(){
 	  $scope.dataPagiSong($scope.query.limit, $scope.query.page);
 	});
-
-  // Load list song with pagination
-  // $scope.load = function() {
-  // loadSong.loadList().then(function(response) {
-  // $scope.myData = response.data;
-  // $scope.totalItems = response.data.length;
-  // });
-  // };
 
   // Delete sonng by id
   $scope.deleteSongByID = function(id, ev) {
@@ -192,18 +184,6 @@ app.controller("homeCloneCtrl", function(
         $scope.psong = response.data;
       });
   };
-
-//  // play-EditSong
-//  $scope.playEditSong = function(x) {
-//    myData.setData(x);
-//    myData.setStatus("homeclone");
-//    $state.go("edit");
-//  };
-//
-//  // play-DeleteSong:
-//  $scope.playDeleteSong = function(x, ev) {
-//    $scope.deleteSongByID(x, ev);
-//  };
 
    // Go Home
   $scope.goHome = function(x) {

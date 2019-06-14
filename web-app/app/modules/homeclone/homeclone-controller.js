@@ -4,8 +4,9 @@ app.controller("homeCloneCtrl", function(
   myData,
   $state,
   $mdDialog,
-  loadSong
+  $window
 ) {
+	
   $scope.selected = [];
   $scope.limitOptions = [5, 10, 15, 20, 25, 50];
 
@@ -15,30 +16,22 @@ app.controller("homeCloneCtrl", function(
     page: 1
   };
 
-$scope.loadFirst = function(){
-  $http.get("http://localhost:8181/cxf/music/manager/system/api/getsong/count").then(function(response){
-    $scope.totalItemsQuery = response.data;
-  });
-}
+  $scope.loadFirst = function(){
+	  $http.get("http://localhost:8181/cxf/music/manager/system/api/getsong/count").then(function(response){
+	    $scope.totalItemsQuery = response.data;
+	  });
+	}
 
-$scope.dataPagiSong = function(size, page){
-  $http.get("http://localhost:8181/cxf/music/manager/system/api/getsong/pagi/"+ size +"/"+ page).then(function(response){
-    $scope.myData = response.data;
-  });
-}
+	$scope.dataPagiSong = function(size, page){
+	  $http.get("http://localhost:8181/cxf/music/manager/system/api/getsong/pagi/"+ size +"/"+ page).then(function(response){
+	    $scope.myData = response.data;
+	    $scope.selected = [];
+	  });
+	}
 
-
-$scope.$watch('query.page + query.limit', function(){
-  $scope.dataPagiSong($scope.query.limit, $scope.query.page);
-});
-
-  // Load list song with pagination
-  // $scope.load = function() {
-  //   loadSong.loadList().then(function(response) {
-  //     $scope.myData = response.data;
-  //     $scope.totalItems = response.data.length;
-  //   });
-  // };
+	$scope.$watch('query.page + query.limit', function(){
+	  $scope.dataPagiSong($scope.query.limit, $scope.query.page);
+	});
 
   // Delete sonng by id
   $scope.deleteSongByID = function(id, ev) {
@@ -67,8 +60,8 @@ $scope.$watch('query.page + query.limit', function(){
                   .ok("OK")
                   .targetEvent(ev)
               ).then(function() {
-                $scope.dataPagiSong($scope.query.limit, $scope.query.page);
-              });
+            	  $window.location.reload();
+            	  });
           },
           function(errResponse) {
             console.log("Error: " + errResponse.status);
@@ -107,7 +100,7 @@ $scope.$watch('query.page + query.limit', function(){
                   .targetEvent(ev)
               )
               .then(function() {
-                $scope.load();
+            	  $window.location.reload();
               });
           },
           function(errResponse) {
@@ -130,6 +123,7 @@ $scope.$watch('query.page + query.limit', function(){
       .targetEvent(ev)
       .ok("OK!")
       .cancel("Cancel");
+    var count = 0;
     $mdDialog
       .show(confirm)
       .then(function() {
@@ -139,6 +133,7 @@ $scope.$watch('query.page + query.limit', function(){
             $http.delete(
               "../cxf/music/manager/system/api/getsong/" + $scope.selected[i].id
             );
+            count++;
           }
         } else {
           $mdDialog.show(
@@ -152,8 +147,7 @@ $scope.$watch('query.page + query.limit', function(){
               .targetEvent(ev)
           );
         }
-      })
-      .then(function() {
+      }).then(function() {
         if (count != 0) {
           $mdDialog
             .show(
@@ -167,7 +161,7 @@ $scope.$watch('query.page + query.limit', function(){
                 .targetEvent(ev)
             )
             .then(function() {
-              $scope.load();
+            	$window.location.reload();
             });
         }
       })
@@ -189,17 +183,6 @@ $scope.$watch('query.page + query.limit', function(){
       .then(function(response) {
         $scope.psong = response.data;
       });
-  };
-
-  // play-EditSong
-  $scope.playEditSong = function(x) {
-    myData.setData(x);
-    $state.go("edit");
-  };
-
-  // play-DeleteSong:
-  $scope.playDeleteSong = function(x, ev) {
-    $scope.deleteSongByID(x, ev);
   };
 
    // Go Home

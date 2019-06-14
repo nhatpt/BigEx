@@ -25,3 +25,4 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state(homeclone)
     $urlRouterProvider.otherwise('/home')
 });
+

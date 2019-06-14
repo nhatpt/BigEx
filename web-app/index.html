@@ -10,48 +10,46 @@
     <!--Font AweSome-->
     <link rel="stylesheet" href="./app/css/all.min.css">
     <link rel="stylesheet" href="./app/css/style.css">
-
+	<link rel='shortcut icon' href='favicon.ico' />
+	
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"> </script>
-    <!-- Angular UI Bootstrap Library -->
-    <script src="./app/js/ui-bootstrap-tpls-2.5.0.js"></script>
     <script src="./app/js/jquery-3.4.1.min.js"></script>
-
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    
+    <!-- Angular.js Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.22/angular-ui-router.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-touch.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-sanitize.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-messages.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-resource.js"></script>
-
     <!-- Angular Material Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.19/angular-material.min.js"></script>
     <link rel="stylesheet" href="./app/css/angular-material.css">
+    
+    <!-- Angular UI Bootstrap Library -->
+    <script src="./app/js/ui-bootstrap-tpls-2.5.0.js"></script>
+    
     <!--Angualar Material Data Table Component-->
-
     <script src="https://rawgit.com/daniel-nagy/md-data-table/master/dist/md-data-table.js"></script>
     
-
     <!--Local Script-->
     <script src="./app/js/bootstrap.min.js"></script>
     <script src="./app/app.js"></script>
     <script src="./app/app.routing.js"></script>
     <script src="./app/modules/directive/add-directive.js"></script>
     <script src="./app/modules/services/dataservice.js"></script>
-
+ 	<script src="./app/modules/services/translate.js"></script>
     <script src="./app/modules/services/add-service.js"></script>
     <script src="./app/modules/services/load-service.js"></script>
-
     <script src="./app/modules/home/home-controller.js"></script>
     <script src="./app/modules/edit/edit-controller.js"></script>
     <script src="./app/modules/homeclone/homeclone-controller.js"></script>
+   
     <title>TMA MSS Demo</title>
 </head>
 
 <body ng-app="myApp">
-    <!-- only 1 checkbox use -->
     <ui-view></ui-view>
 </body>
 

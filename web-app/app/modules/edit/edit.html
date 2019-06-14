@@ -12,43 +12,59 @@
 
     <div class="container">
         <div class="container">
-            <div class="row mt-5">
-                <div class="col-sm text-center">
-                    <h1>UPDATE SONG</h1>
+            <div class="row mt-3">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 float-right">
+                    <form class="form-inline float-right">
+                        <label for="mySelect">{{translation.Select_Language}}:</label>
+                        <select name="mySelect" id="mySelect" class="form-control" ng-model="selectedLanguage"
+                            ng-change="translate()">
+                            <option value="en">English</option>
+                            <option value="vn">Tiếng Việt</option>
+                        </select>
+                    </form>
                 </div>
             </div>
 
-            <div class="row ">
-                <div class="col-sm">
+            <div class="row mt-5">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    <h1>{{translation.UPDATE_SONG}}</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <form class="was-validated">
                         <input type="hidden" ng-model="song.id">
                         <div class="form-group">
-                            <label for="uname">Name:</label>
+                            <label for="uname">{{translation.Name}}:</label>
                             <input type="text" class="form-control" id="uname" ng-init="song.name" ng-model="song.name"
                                 name="sname">
                         </div>
 
                         <div class="form-group">
-                            <label for="genre">Genre:</label>
+                            <label for="genre">{{translation.Genre}}:</label>
                             <input type="text" class="form-control" id="genre" ng-init="song.genre"
                                 ng-model="song.genre" name="sgene">
                         </div>
 
                         <div class="form-group">
-                                <label for="lyrics">Lyrics:</label>
-                                <textarea rows="6" type="text" class="form-control" id="lyrics" ng-init="song.lyrics"
-                                    ng-model="song.lyrics"></textarea>
-                            </div>
+                            <label for="lyrics">{{translation.Lyrics}}:</label>
+                            <textarea rows="6" type="text" class="form-control" id="lyrics" ng-init="song.lyrics"
+                                ng-model="song.lyrics"></textarea>
+                        </div>
 
                         <div class="form-group form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember" ng-init = "checked = false" ng-model="checked"> I agree to update.
+                                <input class="form-check-input" type="checkbox" name="remember"
+                                    ng-init="checked = false" ng-model="checked"> {{translation.I_agree_to_update}}.
                             </label>
                         </div>
-                        
+
                         <div class="float-right">
-                            <button type="submit" class="btn btn-dark" ng-click="cancel()">Cancel</button>
-                            <button type="submit" class="btn btn-primary" ng-click="updateSong(song, $event)">Submit</button>
+                            <button type="submit" class="btn btn-dark"
+                                ng-click="cancel()">{{translation.Cancel}}</button>
+                            <button type="submit" class="btn btn-primary"
+                                ng-click="updateSong(song, $event)">{{translation.Submit}}</button>
                         </div>
                     </form>
                 </div>

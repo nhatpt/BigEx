@@ -1,14 +1,22 @@
 app.controller('myEditCtrl',
-		function($scope, $http, $state, myData, $mdDialog) {
+		function($scope, $http, $state, myData, $mdDialog, translationService) {
+		//Run translation if selected language changes
+		$scope.translate = function() {
+			translationService.getTranslation($scope, $scope.selectedLanguage);
+		};
+		$scope.selectedLanguage = "en";
+		$scope.translate();
+		
 			$scope.song = myData.getData();
 			$scope.status = myData.getStatus();
 			
 			$scope.cancel = function() {
 				if($scope.status == "home"){
 					$state.go('home');
-				}
-				if($scope.status == "homeclone"){
+				}else if($scope.status == "homeclone"){
 					$state.go('homeclone');
+				}else{
+					$state.go('home');
 				}
 			}
 			$scope.updateSong = function(song, ev) {

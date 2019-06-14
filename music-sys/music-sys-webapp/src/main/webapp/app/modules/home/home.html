@@ -55,7 +55,7 @@
 				<table class="table table-striped table-bordered table">
 					<tbody>
 						<tr class="d-flex">
-							<th class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><input type="checkbox" ng-model="checkAll"></th>
+							<th class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></th>
 							<th class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Name</th>
 							<th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Genre</th>
 							<th class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Action</th>
@@ -66,7 +66,7 @@
 								ng-repeat="x in myData | filter: search |  orderBy:'-id' | limitTo: itemsPerPage : (curPage-1) * itemsPerPage">
 							<td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
 								<md-tooltip md-direction='left'>Select
-									Song</md-tooltip><input type="checkbox" class="checkboxSong" ng-checked="checkAll"
+									Song</md-tooltip><input type="checkbox" class="checkboxSong"
 									ng-change="isCheckbox()" ng-model='x.checked' value="{{x.id}}">
 							</td>
 							<!--ng-click="isChecked($event)"-->
@@ -79,12 +79,12 @@
 									<md-tooltip md-direction='top'>Play Song</md-tooltip>
 								</button>
 								<button type="submit" class="btn btn-info" ng-click="edit(x)">
-									<i class="far fa-edit"></i>
+										<i class="fas fa-pen"></i>
 									<md-tooltip md-direction='top'>Edit Song</md-tooltip>
 								</button>
 								<button class="btn btn-danger" ng-click="deleteSongByID(x.id, $event)">
-									<i class="far fa-trash-alt"></i>
-									<md-tooltip md-direction='top'>Delete Song</md-tooltip>
+										<i class="fas fa-eraser"></i>
+								<md-tooltip md-direction='top'>Delete Song</md-tooltip>
 								</button>
 								<!-- Modal Form -->
 								<div class="modal fade" id="myPlay">

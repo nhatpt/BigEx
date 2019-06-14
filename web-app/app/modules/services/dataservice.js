@@ -1,6 +1,6 @@
 app.service("myData", function() {
-  var saveData = {};
-	var savestatus = '';
+	var saveData = {};
+	var savestatus = "";
 	this.setData = function(data) {
 		saveData = data;
 	}
@@ -15,3 +15,4 @@ app.service("myData", function() {
 		return savestatus;
 	}
 });
+
