@@ -84,7 +84,8 @@
 													md-svg-src="app/media/baseline-play_arrow-24px.svg"></md-icon>
 												<md-tooltip md-direction='top'>Play Song</md-tooltip>
 											</md-button>
-											<md-button class="md-icon-button" ng-click="edit(x)">
+											<md-button class="md-icon-button" ui-sref="edit({song:x, status:'homeclone'})" ui-sref-active="active">
+<!-- 											 ng-click="edit(x)"> -->
 												<md-icon aria-label="Edit Song"
 													md-svg-src="app/media/baseline-edit-24px.svg"></md-icon>
 												<md-tooltip md-direction='top'>Edit Song</md-tooltip>
@@ -130,8 +131,8 @@
 														</div>
 
 														<div class="modal-footer">
-															<button type="submit" class="btn btn-primary"
-																data-dismiss="modal" ng-click="edit(psong)">
+															<button type="submit" class="btn btn-primary" 
+																data-dismiss="modal" ng-click="editPlaySong(psong)">			 
 																Edit Song
 															</button>
 															<button type="submit" class="btn btn-primary"
@@ -150,8 +151,7 @@
 						</md-table-container>
 
 						<md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page"
-							md-total="{{totalItemsQuery}}" md-page-select="true" md-boundary-links="true"
-							md-on-paginate="true">
+							md-total="{{totalItemsQuery}}" md-page-select="true" md-boundary-links="true" md-on-paginate="dataPagiSong">
 						</md-table-pagination>
 					</md-card>
 				</md-content>

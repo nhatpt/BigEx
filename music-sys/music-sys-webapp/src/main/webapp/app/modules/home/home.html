@@ -78,7 +78,8 @@
 									<i class="fas fa-play-circle"></i>
 									<md-tooltip md-direction='top'>Play Song</md-tooltip>
 								</button>
-								<button type="submit" class="btn btn-info" ng-click="edit(x)">
+								<button type="submit" class="btn btn-info" ui-sref="edit({song:x, status:'home'})" ui-sref-active="active">
+<!-- 								 ng-click="edit(x)"> -->
 										<i class="fas fa-pen"></i>
 									<md-tooltip md-direction='top'>Edit Song</md-tooltip>
 								</button>
@@ -118,8 +119,8 @@
 											</div>
 
 											<div class="modal-footer">
-												<button type="submit" class="btn btn-primary" data-dismiss="modal"
-													ng-click="edit(psong)">
+												<button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="editPlaySong(psong)">
+<!-- 												 ui-sref="edit({song:psong})" ui-sref-active="active"> -->
 													Edit Song
 												</button>
 												<button type="submit" class="btn btn-primary" data-dismiss="modal"

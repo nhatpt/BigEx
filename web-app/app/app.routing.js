@@ -9,6 +9,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     var edit = {
         name: 'edit',
         url: '/edit',
+        params: {song: null},
         templateUrl: 'app/modules/edit/edit.html',
         controller: 'myEditCtrl'
     }

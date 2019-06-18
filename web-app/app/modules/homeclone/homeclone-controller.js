@@ -1,12 +1,11 @@
 app.controller("homeCloneCtrl", function(
   $scope,
   $http,
-  myData,
   $state,
   $mdDialog,
-  $window
+  $window,
+  songService
 ) {
-	
   $scope.selected = [];
   $scope.limitOptions = [5, 10, 15, 20, 25, 50];
 
@@ -16,22 +15,31 @@ app.controller("homeCloneCtrl", function(
     page: 1
   };
 
-  $scope.loadFirst = function(){
-	  $http.get("http://localhost:8181/cxf/music/manager/system/api/getsong/count").then(function(response){
-	    $scope.totalItemsQuery = response.data;
-	  });
-	}
+  $scope.dataPagiSong = function(page, limit) {
+    var dataPagi = songService.getListSongPagination(page, limit);
+    dataPagi.then(
+      function(response) {
+        $scope.myData = response.data;
+        $scope.selected = [];
+      },
+      function(errResponse) {
+        console.log(errResponse.status);
+      }
+    );
+  };
 
-	$scope.dataPagiSong = function(size, page){
-	  $http.get("http://localhost:8181/cxf/music/manager/system/api/getsong/pagi/"+ size +"/"+ page).then(function(response){
-	    $scope.myData = response.data;
-	    $scope.selected = [];
-	  });
-	}
-
-	$scope.$watch('query.page + query.limit', function(){
-	  $scope.dataPagiSong($scope.query.limit, $scope.query.page);
-	});
+  $scope.loadFirst = function() {
+    var init = songService.getCountListSong();
+    init.then(
+      function(response) {
+        $scope.totalItemsQuery = response.data;
+      },
+      function(errResponse) {
+        console.log(errResponse.status);
+      }
+    );
+    $scope.dataPagiSong($scope.query.page, $scope.query.limit);
+  };
 
   // Delete sonng by id
   $scope.deleteSongByID = function(id, ev) {
@@ -59,9 +67,10 @@ app.controller("homeCloneCtrl", function(
                   .ariaLabel("Alert Dialog")
                   .ok("OK")
                   .targetEvent(ev)
-              ).then(function() {
-            	  $window.location.reload();
-            	  });
+              )
+              .then(function() {
+                $window.location.reload();
+              });
           },
           function(errResponse) {
             console.log("Error: " + errResponse.status);
@@ -100,7 +109,7 @@ app.controller("homeCloneCtrl", function(
                   .targetEvent(ev)
               )
               .then(function() {
-            	  $window.location.reload();
+                $window.location.reload();
               });
           },
           function(errResponse) {
@@ -124,17 +133,22 @@ app.controller("homeCloneCtrl", function(
       .ok("OK!")
       .cancel("Cancel");
     var count = 0;
-    $mdDialog
-      .show(confirm)
-      .then(function() {
-        console.log($scope.selected);
+    $mdDialog.show(confirm).then(
+      function() {
+        console.log($scope.selected.length);
         if ($scope.selected.length != 0) {
           for (var i = 0; i < $scope.selected.length; i++) {
-            $http.delete(
-              "../cxf/music/manager/system/api/getsong/" + $scope.selected[i].id
+            var deleteMul = songService.deleteById($scope.selected[i].id);
+            deleteMul.then(
+              function(response) {
+                count++;
+              },
+              function(errResponse) {
+                console.log("Error: " + errResponse.status);
+              }
             );
-            count++;
           }
+          console.log(count);
         } else {
           $mdDialog.show(
             $mdDialog
@@ -148,7 +162,7 @@ app.controller("homeCloneCtrl", function(
           );
         }
       }).then(function() {
-        if (count != 0) {
+        if (count == $scope.selected.length && count != 0) {
           $mdDialog
             .show(
               $mdDialog
@@ -159,21 +173,19 @@ app.controller("homeCloneCtrl", function(
                 .ariaLabel("Alert Dialog")
                 .ok("OK")
                 .targetEvent(ev)
-            )
-            .then(function() {
-            	$window.location.reload();
+            ).then(function() {
+              $scope.dataPagiSong(1, $scope.query.limit);
             });
         }
-      })
-      .catch(function() {});
+      }).catch(function() {});
   };
 
   $scope.status = false;
   // Save data to Edit:
   $scope.edit = function(d) {
-      myData.setData(d);
-      myData.setStatus("homeclone");
-      $state.go("edit");
+    myData.setData(d);
+    myData.setStatus("homeclone");
+    $state.go("edit");
   };
 
   // Play a song:
@@ -185,7 +197,7 @@ app.controller("homeCloneCtrl", function(
       });
   };
 
-   // Go Home
+  // Go Home
   $scope.goHome = function(x) {
     $state.go("home");
   };

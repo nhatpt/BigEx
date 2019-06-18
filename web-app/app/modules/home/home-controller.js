@@ -1,8 +1,6 @@
 app.controller("myCtrl", function(
   $scope,
-  $http,
-  loadSong,
-  myData,
+  songService,
   $state,
   $mdDialog
 ) {
@@ -15,12 +13,15 @@ app.controller("myCtrl", function(
   
   // Load list song with pagination
   $scope.load = function() {
-    loadSong.loadList().then(function(response) {
+    songService.loadList().then(function(response) {
       $scope.myData = response.data;
       $scope.bigTotalItems = response.data.length;
     })
   };
-  
+
+  $scope.$on('reloadListSong', function(){
+      $scope.load(); 
+  })
 
   $scope.changePage = function(num) {
     $scope.itemsPerPage = num;
@@ -47,7 +48,7 @@ app.controller("myCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("../cxf/music/manager/system/api/getsong/deleteAll").then(
+        songService.deleteAll().then(
           function() {
             $mdDialog
               .show(
@@ -86,6 +87,7 @@ app.controller("myCtrl", function(
 
   // Delete sonng by Multi-id:
   $scope.deleteMulSong = function(ev) {
+    console.log($scope.arrChecked.length);
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog
       .confirm()
@@ -99,13 +101,13 @@ app.controller("myCtrl", function(
     $mdDialog
       .show(confirm)
       .then(function() {
-        console.log($scope.arrChecked )
+        console.log($scope.arrChecked.length)
         if ($scope.arrChecked.length != 0) {
           for (var i = 0; i < $scope.arrChecked.length; i++) {
-            $http.delete(
-              "../cxf/music/manager/system/api/getsong/" + $scope.arrChecked[i]
-            );
-            count++;
+            songService.deleteById($scope.arrChecked[i]).then(function(){
+              count++;
+            }
+            )
           }
         } else {
           $mdDialog.show(
@@ -163,7 +165,7 @@ app.controller("myCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("../cxf/music/manager/system/api/getsong/" + id).then(
+        songService.deleteById(id).then(
           function() {
             $mdDialog
               .show(
@@ -191,24 +193,10 @@ app.controller("myCtrl", function(
   
   // Play a song:
   $scope.play = function(id) {
-    $http
-      .get("../cxf/music/manager/system/api/getsong/getid/" + id)
-      .then(function(response) {
+    songService.playSong().then(function(response) {
         $scope.psong = response.data;
       });
   };
-
-//  // play-EditSong
-//  $scope.playEditSong = function(x) {
-//    myData.setData(x);
-//    myData.setStatus("home");
-//    $state.go("edit");
-//  };
-//
-//  // play-DeleteSong:
-//  $scope.playDeleteSong = function(x, ev) {
-//    $scope.deleteSongByID(x, ev);
-//  };
 
    // Go to Home Clone
    $scope.goHomeClone = function() {

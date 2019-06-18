@@ -1,8 +1,6 @@
 app.controller("myCtrl", function(
   $scope,
-  $http,
-  loadSong,
-  myData,
+  songService,
   $state,
   $mdDialog
 ) {
@@ -15,23 +13,26 @@ app.controller("myCtrl", function(
   
   // Load list song with pagination
   $scope.load = function() {
-    loadSong.loadList().then(function(response) {
+    songService.loadList().then(function(response) {
       $scope.myData = response.data;
       $scope.bigTotalItems = response.data.length;
     })
   };
   
-
+  $scope.$on('reloadListSong', function(){
+      $scope.load(); 
+  })
+  
   $scope.changePage = function(num) {
     $scope.itemsPerPage = num;
     $scope.curPage = 1; //reset page
   };
 
+  
   $scope.$watch('curPage + itemsPerPage', function() {
     $scope.begin = (($scope.curPage - 1) * $scope.itemsPerPage);
     $scope.end = $scope.begin + $scope.itemsPerPage;
   });
-
 
   // Delete all sonng:
   $scope.deleteAllSong = function(ev) {
@@ -47,8 +48,8 @@ app.controller("myCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("../cxf/music/manager/system/api/getsong/deleteAll").then(
-          function() {
+    	  var deleteAll = songService.deleteAll();
+    	  deleteAll.then(function(response) {
             $mdDialog
               .show(
                 $mdDialog
@@ -59,17 +60,14 @@ app.controller("myCtrl", function(
                   .ariaLabel("Alert Dialog")
                   .ok("OK")
                   .targetEvent(ev)
-              )
-              .then(function() {
-                $scope.load();
+              ).then(function() {
+            	  $window.location.reload();
               });
-          },
-          function(errResponse) {
+          },function(errResponse) {
             console.log("Error: " + errResponse.status);
           }
         );
-      },
-      function() {}
+      },function() {}
     );
   };
 
@@ -84,9 +82,9 @@ app.controller("myCtrl", function(
     $scope.arrChecked = arr;
   };
 
-  // Delete sonng by Multi-id:
+//Delete sonng by Multi-id:
   $scope.deleteMulSong = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
+	console.log($scope.arrChecked.length);
     var confirm = $mdDialog
       .confirm()
       .title("Would you like to delete this song?")
@@ -96,16 +94,30 @@ app.controller("myCtrl", function(
       .ok("OK!")
       .cancel("Cancel");
     var count = 0;
-    $mdDialog
-      .show(confirm)
-      .then(function() {
-        console.log($scope.arrChecked )
+    $mdDialog.show(confirm).then(function() {
         if ($scope.arrChecked.length != 0) {
           for (var i = 0; i < $scope.arrChecked.length; i++) {
-            $http.delete(
-              "../cxf/music/manager/system/api/getsong/" + $scope.arrChecked[i]
-            );
-            count++;
+        	  var deleteMul = songService.deleteById($scope.arrChecked[i]);
+        	  deleteMul.then(function(response){
+        		  count++;
+        		  if(count != 0 && count == $scope.arrChecked.length){
+        			  $mdDialog
+        	            .show(
+        	              $mdDialog
+        	                .alert()
+        	                .clickOutsideToClose(true)
+        	                .title("Success")
+        	                .textContent("You have deleted this song.")
+        	                .ariaLabel("Alert Dialog")
+        	                .ok("OK")
+        	                .targetEvent(ev)
+        	            ).then(function() {
+        	            	$scope.load();
+        	            });
+        		  }
+        	  }, function(errResponse){
+        		 console.log("Error: " + errResponse.status);
+        	  }) 
           }
         } else {
           $mdDialog.show(
@@ -119,37 +131,10 @@ app.controller("myCtrl", function(
               .targetEvent(ev)
           );
         }
-      })
-      .then(function() {
-        if (count != 0) {
-          $mdDialog
-            .show(
-              $mdDialog
-                .alert()
-                .clickOutsideToClose(true)
-                .title("Success")
-                .textContent("You have deleted this song.")
-                .ariaLabel("Alert Dialog")
-                .ok("OK")
-                .targetEvent(ev)
-            )
-            .then(function() {
-              $scope.load();
-            });
-        }
-      })
-      .catch(function() {});
+      }),function() {};
   };
   
-  $scope.status = false;
-  // Save data to Edit:
-  $scope.edit = function(d) {
-      myData.setData(d);
-      myData.setStatus("home");
-      $state.go("edit");
-  };
-
-  // Delete sonng by id
+//Delete sonng by id
   $scope.deleteSongByID = function(id, ev) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog
@@ -163,8 +148,9 @@ app.controller("myCtrl", function(
 
     $mdDialog.show(confirm).then(
       function() {
-        $http.delete("../cxf/music/manager/system/api/getsong/" + id).then(
-          function() {
+    	var deleteByID = songService.deleteById(id);
+    	deleteByID.then(
+          function(response) {
             $mdDialog
               .show(
                 $mdDialog
@@ -175,12 +161,10 @@ app.controller("myCtrl", function(
                   .ariaLabel("Alert Dialog")
                   .ok("OK")
                   .targetEvent(ev)
-              )
-              .then(function() {
-                $scope.load();
+              ).then(function() {
+            	  $scope.load();
               });
-          },
-          function(errResponse) {
+          },function(errResponse) {
             console.log("Error: " + errResponse.status);
           }
         );
@@ -191,25 +175,19 @@ app.controller("myCtrl", function(
   
   // Play a song:
   $scope.play = function(id) {
-    $http
-      .get("../cxf/music/manager/system/api/getsong/getid/" + id)
-      .then(function(response) {
-        $scope.psong = response.data;
+	  var playSong = songService.playSong(id);
+	  playSong.then(function(response) {
+		  $scope.psong = response.data;
+      }, function(errResponse){
+    	  console.log("Error: " + errResponse.status);
       });
   };
-
-//  // play-EditSong
-//  $scope.playEditSong = function(x) {
-//    myData.setData(x);
-//    myData.setStatus("home");
-//    $state.go("edit");
-//  };
-//
-//  // play-DeleteSong:
-//  $scope.playDeleteSong = function(x, ev) {
-//    $scope.deleteSongByID(x, ev);
-//  };
-
+  
+  // Go to Edit Page By Modal:
+  $scope.editPlaySong = function(psong) {
+	    $state.go("edit", {song: psong, status: 'home'});
+  };
+  
    // Go to Home Clone
    $scope.goHomeClone = function() {
     $state.go("homeclone");

@@ -1,23 +1,26 @@
 app.controller('myEditCtrl',
-		function($scope, $http, $state, myData, $mdDialog, translationService) {
-		//Run translation if selected language changes
+		function($scope, $http, $state, $stateParams, $mdDialog, translationService) {
+			$scope.song = $stateParams.song;
+			console.log($stateParams.song);
+			//Run translation if selected language changes
 		$scope.translate = function() {
 			translationService.getTranslation($scope, $scope.selectedLanguage);
 		};
 		$scope.selectedLanguage = "en";
 		$scope.translate();
 		
-			$scope.song = myData.getData();
-			$scope.status = myData.getStatus();
+			// $scope.song = myData.getData();
+			// $scope.status = myData.getStatus();
 			
 			$scope.cancel = function() {
-				if($scope.status == "home"){
-					$state.go('home');
-				}else if($scope.status == "homeclone"){
-					$state.go('homeclone');
-				}else{
-					$state.go('home');
-				}
+				$state.go('home');
+				// if($scope.status == "home"){
+				// 	$state.go('home');
+				// }else if($scope.status == "homeclone"){
+				// 	$state.go('homeclone');
+				// }else{
+				// 	$state.go('home');
+				// }
 			}
 			$scope.updateSong = function(song, ev) {
 				if (song.name != '' && song.genre != '' && song.lyrics != '' && $scope.checked == true) {
@@ -34,7 +37,8 @@ app.controller('myEditCtrl',
 												"Update Success")
 										.ariaLabel("Alert Dialog").ok("OK")
 										.targetEvent(ev)).then(function(response){
-											$scope.cancel();
+											// $scope.cancel();
+											$state.go('home');
 										});
 							},
 							function(errResponse) {
