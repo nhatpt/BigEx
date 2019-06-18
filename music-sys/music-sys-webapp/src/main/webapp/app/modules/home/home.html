@@ -142,7 +142,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-right">
 					<label for="rpp">Rows per page:</label>
 					<select  class="pagination-selection"  ng-model="viewby" ng-change='changePage(viewby)' ng-options="x for x in [5,10,20,50]" id="rpp"> </select>
-					<label for="rpp" class="mr-3">{{begin+1}}-{{end}} of {{bigTotalItems}}</label>
+					<label for="rpp" class="mr-3">{{begin}}-{{end}} of {{bigTotalItems}}</label>
 				<span class="pagination-sm float-right" uib-pagination total-items="bigTotalItems" ng-model="curPage" items-per-page="itemsPerPage" boundary-links="true"></span>
 			</div>
 		</div>

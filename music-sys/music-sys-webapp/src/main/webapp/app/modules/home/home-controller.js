@@ -16,8 +16,23 @@ app.controller("myCtrl", function(
     songService.loadList().then(function(response) {
       $scope.myData = response.data;
       $scope.bigTotalItems = response.data.length;
-    })
+      $scope.changePageNumber($scope.curPage,$scope.itemsPerPage, $scope.bigTotalItems);
+    });
   };
+  
+  $scope.changePageNumber = function(begin, end, count) {
+	  if(count == 0){
+    	  $scope.end = 0;
+    	  $scope.begin = 0
+      }else{
+    	  $scope.begin = (( begin  - 1) *  end) + 1;
+    	  $scope.end = $scope.begin + end;
+    	  if($scope.end >  count ){
+    		  $scope.end = count;
+    	  }
+      }
+  };
+  
   
   $scope.$on('reloadListSong', function(){
       $scope.load(); 
@@ -27,11 +42,9 @@ app.controller("myCtrl", function(
     $scope.itemsPerPage = num;
     $scope.curPage = 1; //reset page
   };
-
   
   $scope.$watch('curPage + itemsPerPage', function() {
-    $scope.begin = (($scope.curPage - 1) * $scope.itemsPerPage);
-    $scope.end = $scope.begin + $scope.itemsPerPage;
+	  $scope.changePageNumber($scope.curPage,$scope.itemsPerPage, $scope.bigTotalItems);
   });
 
   // Delete all sonng:
@@ -61,7 +74,7 @@ app.controller("myCtrl", function(
                   .ok("OK")
                   .targetEvent(ev)
               ).then(function() {
-            	  $window.location.reload();
+            	  $scope.load();
               });
           },function(errResponse) {
             console.log("Error: " + errResponse.status);
