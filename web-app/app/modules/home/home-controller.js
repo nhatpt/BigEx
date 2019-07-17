@@ -84,7 +84,7 @@ app.controller("myCtrl", function(
     });
     $scope.arrChecked = arr;
   };
-
+  $scope.count = 0;
   // Delete sonng by Multi-id:
   $scope.deleteMulSong = function(ev) {
     console.log($scope.arrChecked.length);
@@ -97,7 +97,6 @@ app.controller("myCtrl", function(
       .targetEvent(ev)
       .ok("OK!")
       .cancel("Cancel");
-    var count = 0;
     $mdDialog
       .show(confirm)
       .then(function() {
@@ -105,7 +104,7 @@ app.controller("myCtrl", function(
         if ($scope.arrChecked.length != 0) {
           for (var i = 0; i < $scope.arrChecked.length; i++) {
             songService.deleteById($scope.arrChecked[i]).then(function(){
-              count++;
+              $scope.count += 1;
             }
             )
           }

@@ -25,6 +25,7 @@ app.service("songService", function($http) {
     this.updateSong = function(id, data){
         return $http.put('../cxf/music/manager/system/api/getsong/' + id, data)
     }
+    
     this.addSong = function(data){
         return $http.post("../cxf/music/manager/system/api/getsong/", data);
     }
